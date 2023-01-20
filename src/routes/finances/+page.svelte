@@ -1,1 +1,5 @@
-<h1>Finances</h1>
+
+
+<div class="finances-container">Finances</div>
+
+<style></style>
