@@ -1,12 +1,4 @@
-<script src="./script.ts"></script>
 
+<div>Finances</div>
 
-<div class="finances-container">Finances</div>
-
-<button on:click={testFunc()}>test</button>
-
-<style>
-    .finances-container {
-    font-size: 50px;
-}
-</style>
+<button>test</button>
