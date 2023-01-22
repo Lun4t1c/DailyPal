@@ -1,4 +1,14 @@
+<script lang="ts">
 
-<div>Finances</div>
+    async function load(): Promise<void> {
+        console.log("get test func yo");    
+    }
 
-<button>test</button>
+</script>
+
+
+<!-- HTML -->
+<body>
+    <div>Finances</div>
+    <button on:click={() => load()}>test</button>
+</body>
