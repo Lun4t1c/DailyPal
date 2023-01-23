@@ -1,6 +1,10 @@
+import { VITE_MONGODB_CONNECTION_STRING } from "$env/static/private";
+import type { FinanceSourceModel } from "$lib/models/financeSourceModel";
 import { MongoClient } from "mongodb";
 
-export function testConnection(): void{
+const client = new MongoClient(VITE_MONGODB_CONNECTION_STRING);
+
+export function testConnection(): boolean{
     try{
         console.log(' >> Testing database connection...')
 
@@ -9,9 +13,13 @@ export function testConnection(): void{
         client.connect();
         client.close();
 
-        console.log(' >> ok');
+        console.log(' >> ok')
+        return true;
     }
     catch(err) {
         console.error(' >> Could not connect to database');
+        return false;
     }
 }
+
+export default client.db('dailypal');

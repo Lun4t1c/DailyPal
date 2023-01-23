@@ -1,6 +1,6 @@
 import type { FinanceSourceModel } from "./financeSourceModel";
 
-export interface financeSourceLockModel {
+export interface plannedExpense {
     id: number,
     valueInPennies: number,
     financeSource: FinanceSourceModel | null

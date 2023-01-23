@@ -1,3 +1,3 @@
-import { testConnection } from "./db/mongo";
+import { testConnection } from "$db/mongo";
 
 testConnection();

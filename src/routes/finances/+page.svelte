@@ -1,14 +1,19 @@
 <script lang="ts">
+	import type { PageData } from "./$types";
 
-    async function load(): Promise<void> {
-        console.log("get test func yo");    
-    }
+    export let data: PageData;
 
+    $: ({ financeSources } = data)
 </script>
 
 
 <!-- HTML -->
 <body>
     <div>Finances</div>
-    <button on:click={() => load()}>test</button>
+    
+    {#each financeSources as financeSource}
+        <h2>{financeSource.name}</h2>
+        <h3>{financeSource.valueInPennies}</h3>
+    {/each}
+
 </body>
