@@ -12,8 +12,10 @@
     <div>Finances</div>
     
     {#each financeSources as financeSource}
-        <h2>{financeSource.name}</h2>
-        <h3>{financeSource.valueInPennies}</h3>
+        <article>
+            <h2>{financeSource.name}</h2>
+            <h3>{financeSource.valueInPennies}</h3>
+        </article>
     {/each}
 
 </body>
