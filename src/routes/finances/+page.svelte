@@ -1,21 +1,32 @@
 <script lang="ts">
-	import type { PageData } from "./$types";
+	import { goto } from "$app/navigation";
+	import type { ObjectId } from "mongodb";
+    import type { PageData } from "./$types";
 
     export let data: PageData;
 
     $: ({ financeSources } = data)
+
+    function goToFinanceById(id: ObjectId) {
+        goto('/finances/source/' + id.toString());
+    }
 </script>
 
 
-<!-- HTML -->
+
 <body>
     <div>Finances</div>
     
-    {#each financeSources as financeSource}
-        <article>
+    <div class="flex-col p-5 bg-amber-500">
+    {#each financeSources as financeSource}        
             <h2>{financeSource.name}</h2>
-            <h3>{financeSource.valueInPennies}</h3>
-        </article>
+            <h3>{financeSource.valueInPennies / 100}</h3>
+
+            <button on:click={() => goToFinanceById(financeSource._id)}
+                class="border-2 p-1 m-1 bg-white">
+                Check
+            </button>
     {/each}
+    </div>
 
 </body>
