@@ -1,3 +1,3 @@
 import db from '$db/mongo';
 
-export const financeSources = db.collection('financeSources');
+export const financeSourcesCollection = db.collection('financeSources');

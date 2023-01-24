@@ -1,22 +1,36 @@
 <script lang="ts">
+	import type { FinanceSourceModel } from "$lib/models/financeSourceModel";
 
     let name = '';
     let startingAmount = 0;
 
     function submit(): void {
         console.log('Submitting...');
+
+        let financeSource: FinanceSourceModel = {
+            id: null,
+            name: name,
+            valueInPennies: startingAmount
+        }
+
+        fetch('/finances/add', {
+            method: 'POST',
+            body: JSON.stringify(financeSource)
+        })
+
+        console.log('Done')
     }
 
 </script>
 
 <h1>Add new finance source:</h1>
-<form on:submit={submit}>
+<form method="POST">
     <div class="flex-col">
         <label for="nameInput">Name: </label>
-        <input id="nameInput" class="border-2" type="text" bind:value={name}>
+        <input name="name" id="nameInput" class="border-2" type="text" bind:value={name}>
 
         <label for="startingAmount">Starting amount: </label>
-        <input id="startingAmount" class="border-2" type="number" bind:value={startingAmount}>
+        <input name="startingAmount" id="startingAmount" class="border-2" type="number" bind:value={startingAmount}>
 
         <button type="submit" class="border-2">Add</button>
     </div>

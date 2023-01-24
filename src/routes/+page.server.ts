@@ -1,8 +1,8 @@
 import type { PageServerLoad } from "./$types";
-import { financeSources } from "$db/financeSources";
+import { financeSourcesCollection } from "$db/financeSources";
 
 export const load: PageServerLoad = async function name() {
-    const data = await financeSources.find({}).toArray();
+    const data = await financeSourcesCollection.find({}).toArray();
     return {
         financeSources: JSON.parse(JSON.stringify(data))
     }
