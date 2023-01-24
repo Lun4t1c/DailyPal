@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { financeSourcesCollection } from "$db/financeSources";
 	import type { FinanceSourceModel } from "$lib/models/financeSourceModel";
 
     let name = '';
@@ -13,18 +14,16 @@
             valueInPennies: startingAmount
         }
 
-        fetch('/finances/add', {
-            method: 'POST',
-            body: JSON.stringify(financeSource)
-        })
+        financeSourcesCollection.insertOne(financeSource);
 
         console.log('Done')
     }
 
 </script>
 
+
 <h1>Add new finance source:</h1>
-<form method="POST">
+<form on:submit={submit}>
     <div class="flex-col">
         <label for="nameInput">Name: </label>
         <input name="name" id="nameInput" class="border-2" type="text" bind:value={name}>
