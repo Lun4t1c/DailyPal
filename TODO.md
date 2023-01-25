@@ -9,6 +9,10 @@
 
 - [ ] Find some temporary ready to go css styles
 
+### Misc
+
+- [ ] Write proper README
+
 ### In Progress
 
 
