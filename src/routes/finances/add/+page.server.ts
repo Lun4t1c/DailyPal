@@ -21,24 +21,16 @@ export const actions: Actions = {
 
         console.log('data: ', data);
 
-        try{
-
-            let name: string | undefined;
-            let valueInPennies: string | undefined;
-
-            if (!data.has('name')) throw Error('finances/add: Name is null')
-            name = data.get('name')?.toString();
-
-            if (!data.has('startingAmount')) throw Error('finances/add: startingAmount is null')
-            valueInPennies = data.get('startingAmount')?.toString();
-            
+        try{      
             const financeSource: FinanceSourceModel = {
                 id: null,
-                name: name as string,
-                valueInPennies: parseInt(valueInPennies as string)
+                name: data.get('name') as string,
+                valueInPennies: parseInt(data.get('startingAmount') as string)
             };
 
             console.log('obj: ', financeSource)
+
+            financeSourcesCollection.insertOne(financeSource);
     
             return {
                 status: 200,

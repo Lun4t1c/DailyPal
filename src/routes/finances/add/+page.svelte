@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { financeSourcesCollection } from "$db/financeSources";
+	import { enhance } from "$app/forms";
 	import type { FinanceSourceModel } from "$lib/models/financeSourceModel";
 
     let name = '';
@@ -14,8 +14,6 @@
             valueInPennies: startingAmount
         }
 
-        financeSourcesCollection.insertOne(financeSource);
-
         console.log('Done')
     }
 
@@ -23,7 +21,11 @@
 
 
 <h1>Add new finance source:</h1>
-<form on:submit={submit}>
+<form
+    method="POST"
+    use:enhance>
+
+
     <div class="flex-col">
         <label for="nameInput">Name: </label>
         <input name="name" id="nameInput" class="border-2" type="text" bind:value={name}>
