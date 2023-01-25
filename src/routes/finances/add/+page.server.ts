@@ -2,18 +2,6 @@ import { financeSourcesCollection } from "$db/financeSources";
 import type { FinanceSourceModel } from "$lib/models/financeSourceModel";
 import type { Actions, RequestEvent } from "./$types";
 
-
-// export async function get(request) {
-//     let financeSources = financeSourcesCollection.find({});
-
-//     return {
-//         status: 200,
-//         body: {
-
-//         }
-//     }
-// }
-
 export const actions: Actions = {
     default: async ({request}) => {
         const financeSources = financeSourcesCollection;
@@ -23,9 +11,8 @@ export const actions: Actions = {
 
         try{      
             const financeSource: FinanceSourceModel = {
-                id: null,
                 name: data.get('name') as string,
-                valueInPennies: parseInt(data.get('startingAmount') as string)
+                valueInPennies: parseInt(data.get('startingAmount') as string)  * 100
             };
 
             console.log('obj: ', financeSource)

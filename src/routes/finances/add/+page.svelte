@@ -5,18 +5,6 @@
     let name = '';
     let startingAmount = 0;
 
-    function submit(): void {
-        console.log('Submitting...');
-
-        let financeSource: FinanceSourceModel = {
-            id: null,
-            name: name,
-            valueInPennies: startingAmount
-        }
-
-        console.log('Done')
-    }
-
 </script>
 
 
@@ -35,4 +23,4 @@
 
         <button type="submit" class="border-2">Add</button>
     </div>
-  </form>
+</form>

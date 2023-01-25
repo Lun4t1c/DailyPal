@@ -1,7 +1,7 @@
 import type { ObjectId } from "mongodb";
 
 export interface FinanceSourceModel {
-    id: ObjectId | null,
+    _id?: ObjectId | undefined,
     name: string,
     valueInPennies: number
 }
