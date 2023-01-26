@@ -12,6 +12,7 @@
 ### Misc
 
 - [ ] Write proper README
+- [ ] Prepare for deployment on Netlify (install adapter https://kit.svelte.dev/docs/adapter-netlify)
 
 ### In Progress
 
