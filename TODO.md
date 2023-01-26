@@ -16,6 +16,7 @@
 
   - [ ] Finances  
     - [ ] FinanceSources CRUD
+    - [ ] Ask user for confirmation when deleting
     - [ ] transactions CRUD
     
 

@@ -1,7 +1,6 @@
 import type { Actions, PageServerLoad } from "./$types";
-import { financeSourcesCollection } from "$db/financeSources";
 import { ObjectId } from "mongodb";
-import type { FinanceSourceModel } from "$lib/models/financeSourceModel";
+import { financeSourcesCollection } from "$db/financeSourcesCollection";
 
 export const load: PageServerLoad = async function name() {
     const data = await financeSourcesCollection.find({}).toArray();
@@ -12,10 +11,7 @@ export const load: PageServerLoad = async function name() {
 
 export const actions: Actions = {
     delete: async ({request}) => {
-        const financeSources = financeSourcesCollection;
         const data = await request.formData();
-
-        console.log('deleting by id: ', data.get('_id') as string);
 
         try{
             financeSourcesCollection.deleteOne({

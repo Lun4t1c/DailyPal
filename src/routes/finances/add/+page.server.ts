@@ -1,4 +1,4 @@
-import { financeSourcesCollection } from "$db/financeSources";
+import { financeSourcesCollection } from "$db/financeSourcesCollection";
 import type { FinanceSourceModel } from "$lib/models/financeSourceModel";
 import type { Actions, RequestEvent } from "./$types";
 

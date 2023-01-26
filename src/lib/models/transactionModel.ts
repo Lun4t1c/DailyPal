@@ -1,9 +1,8 @@
 import type { ObjectId } from "mongodb";
-import type { FinanceSourceModel } from "./financeSourceModel";
 
 export interface TransactionModel {
-    id: ObjectId,
-    financeSource: FinanceSourceModel,
+    id: ObjectId | undefined,
+    idFinanceSource: ObjectId,
     amountInPennies: number,
     isNegative: boolean
     date: Date
