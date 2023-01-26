@@ -11,12 +11,18 @@
     function goToFinanceById(id: ObjectId) {
         goto('/finances/source/' + id.toString());
     }
+
+    function goToFinanceAdd(){
+        goto('/finances/add');
+    }
 </script>
 
 
 
 <body>
     <div>Finances</div>
+
+    <button on:click={goToFinanceAdd}>Add finance source</button>
     
     <div class="flex-col p-5 bg-amber-500">
     {#each financeSources as financeSource}        
