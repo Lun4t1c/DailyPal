@@ -11,6 +11,7 @@
 
   - [ ] Todo module
     - [ ] Todo CRUD  
+    - [ ] Delete completed todos after X time (specified by user)
 
   - [ ] DaysSince module
 
