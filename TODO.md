@@ -19,6 +19,12 @@
     - [ ] FinanceSources CRUD
     - [ ] Ask user for confirmation when deleting
     - [ ] transactions CRUD
+
+- [ ] Components  
+  - [ ] Todo component  
+  - [ ] Streak component  
+  - [ ] Finance component  
+  - [ ] Fitness component  
     
 
 ### Styling
