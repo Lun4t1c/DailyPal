@@ -6,6 +6,7 @@
   - [ ] Implement http methods  
 
 ### Frontend
+- [ ] Refactor Modal component
 
 - [ ] Modules  
 

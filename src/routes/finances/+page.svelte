@@ -6,14 +6,13 @@
     import type { PageData } from "./$types";
 
     export let data: PageData;
-
     $: ({ financeSources } = data)
 
     function goToFinanceById(id: ObjectId) {
         goto('/finances/source/' + id.toString());
     }
 
-    function goToFinanceAdd(){
+    function goToFinanceAdd() {
         goto('/finances/add');
     }
 </script>
@@ -22,7 +21,7 @@
 <body>
     <div>Finances</div>
 
-    <button on:click={goToFinanceAdd}>Add finance source</button>
+    <button on:click={goToFinanceAdd} class="btn btn-blue">Add finance source</button>
     
     <div class="flex-col p-5 bg-amber-500">
     {#each financeSources as financeSource}
