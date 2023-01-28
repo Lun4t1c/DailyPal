@@ -9,9 +9,10 @@
 
 - [ ] Modules  
 
-  - [ ] Todo module
+  - [ ] Todo module  
     - [ ] Todo CRUD  
-    - [ ] Delete completed todos after X time (specified by user)
+    - [ ] Delete completed todos after X time (specified by user)  
+    - [ ] Nested todos  
 
   - [ ] DaysSince module
 

@@ -13,3 +13,10 @@ export function getTodayDateString(): string{
     let dateString: string = [year, month, day].join('-');
     return dateString
 }
+
+/** Return null if @param dateString is an empty string 
+ * or new Date based on @param dateString otherwise */
+export function dateOrNull(dateString: string): Date | null{
+    if (dateString === '') return null;
+    else return new Date(dateString);
+}
