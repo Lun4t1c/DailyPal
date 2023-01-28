@@ -7,6 +7,8 @@
 
 ### Frontend
 - [ ] Refactor Modal component
+  - [ ] Deal with 'window is not defined' error
+  - [ ] Deal with 'visible, non-interactive elements with an on:click event must be accompanied by an on:keydown, on:keyup, or on:keypress event.' warning  
 
 - [ ] Modules  
 

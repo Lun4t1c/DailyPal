@@ -9,6 +9,8 @@
 </script>
 
 <script lang="ts">
+	import { browser } from '$app/environment';
+
 import {onDestroy} from 'svelte'
 	
 let topDiv
@@ -29,7 +31,10 @@ function open(callback){
 	if(visible) return
 	prevOnTop=onTop
 	onTop=topDiv
-	window.addEventListener("keydown",keyPress)
+	
+	if (browser){
+		window.addEventListener("keydown",keyPress)
+	}
 	
 	//this prevents scrolling of the main window on larger screens
 	document.body.style.overflow="hidden" 
