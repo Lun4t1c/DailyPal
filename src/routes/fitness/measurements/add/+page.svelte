@@ -1,20 +1,7 @@
 <script lang="ts">
 	import { enhance } from "$app/forms"; 
+	import { getTodayDateString } from "$lib/utils/helpers";
     
-    function getTodayDateString(): string{
-        let today: Date = new Date();
-        let month: string = '' + (today.getMonth() + 1);
-        let day: string = '' + today.getDate();
-        let year: string = today.getFullYear().toString();
-
-        if (month.length < 2) 
-            month = '0' + month;
-        if (day.length < 2) 
-            day = '0' + day;
-
-        let dateString: string = [year, month, day].join('-');
-        return dateString
-    }
 </script>
 
 
