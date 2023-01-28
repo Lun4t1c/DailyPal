@@ -1,7 +1,7 @@
 import type { ObjectId } from "mongodb";
 
 
-export interface fitnessMeasurementModel {
+export interface FitnessMeasurementModel {
     _id?: ObjectId | undefined,
     date: Date,
     weight: number,

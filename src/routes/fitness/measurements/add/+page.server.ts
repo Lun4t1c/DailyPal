@@ -1,5 +1,5 @@
 import { fitnessMeasurementsCollection } from "$db/fitnessMeasurementsCollection";
-import type { fitnessMeasurementModel } from "$lib/models/fitnessMeasurementModel";
+import type { FitnessMeasurementModel } from "$lib/models/fitnessMeasurementModel";
 import type { Actions } from "./$types";
 
 export const actions: Actions = {
@@ -7,7 +7,7 @@ export const actions: Actions = {
         const data = await request.formData();
 
         try{      
-            const fitnessMeasurement: fitnessMeasurementModel = {
+            const fitnessMeasurement: FitnessMeasurementModel = {
                 date: new Date(data.get('date') as string),
                 weight: parseFloat(data.get('weight') as string),
                 bmi: parseFloat(data.get('bmi') as string),
