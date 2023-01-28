@@ -30,6 +30,7 @@
 ### Styling
 
 - [ ] Find some temporary ready to go css styles
+- [ ] Navbar icons
 
 ### Misc
 
