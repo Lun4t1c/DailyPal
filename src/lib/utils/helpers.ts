@@ -20,3 +20,16 @@ export function dateOrNull(dateString: string): Date | null{
     if (dateString === '') return null;
     else return new Date(dateString);
 }
+
+/** Convert string value to boolean */
+export function stringToBoolean(s: string): boolean {
+    switch(s.toLowerCase()){
+        case "true":
+        case "1":
+        case "on":
+        case "yes":
+            return true;
+        default: 
+            return false;
+    }
+}

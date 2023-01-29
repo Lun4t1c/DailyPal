@@ -5,6 +5,8 @@
   - [ ] Deal with 'window is not defined' error
   - [ ] Deal with 'visible, non-interactive elements with an on:click event must be accompanied by an on:keydown, on:keyup, or on:keypress event.' warning  
 
+- [ ] Implement ComboBoxComponent  
+
 - [ ] Modules  
 
   - [ ] Todo module  
@@ -27,7 +29,6 @@
   - [X] Streak component  
   - [ ] Finance component  
   - [X] Fitness component  
-    
 
 ### Styling
 
@@ -38,6 +39,7 @@
 
 - [ ] Write proper README
 - [ ] Prepare for deployment on Netlify (install adapter https://kit.svelte.dev/docs/adapter-netlify)
+- [ ] Prepare app for multi-user possibilities
 
 ### In Progress
 
