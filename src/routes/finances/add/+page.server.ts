@@ -4,18 +4,13 @@ import type { Actions, RequestEvent } from "./$types";
 
 export const actions: Actions = {
     default: async ({request}) => {
-        const financeSources = financeSourcesCollection;
         const data = await request.formData();
-
-        console.log('data: ', data);
-
+        
         try{      
             const financeSource: FinanceSourceModel = {
                 name: data.get('name') as string,
-                valueInPennies: parseInt(data.get('startingAmount') as string)  * 100
+                valueInPennies: parseFloat(data.get('startingAmount') as string)  * 100
             };
-
-            console.log('obj: ', financeSource)
 
             financeSourcesCollection.insertOne(financeSource);
     

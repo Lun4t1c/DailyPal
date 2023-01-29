@@ -12,6 +12,7 @@ export const load: PageServerLoad = async function name() {
 export const actions: Actions = {
     delete: async ({request}) => {
         const data = await request.formData();
+        console.log('deleting...: ', data.get('_id'));
 
         try{
             financeSourcesCollection.deleteOne({

@@ -3,7 +3,11 @@ import { fitnessMeasurementsCollection } from "$db/fitnessMeasurementsCollection
 import type { FitnessMeasurementModel } from "$lib/models/fitnessMeasurementModel";
 
 export const load: PageServerLoad = async function name() {
-    const data = await fitnessMeasurementsCollection.find({}).toArray();
+    const data = await fitnessMeasurementsCollection
+        .find({})
+        .sort({ date: -1 })
+        .toArray();
+
     return {
         fitnessMeasurements: JSON.parse(JSON.stringify(data))
     };

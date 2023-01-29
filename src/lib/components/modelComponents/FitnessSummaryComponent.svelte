@@ -6,7 +6,7 @@
 
 
 <body>
-    <div class="border-2 border-red-600 m-4">
+    <div class="border-2 border-red-600 m-4 p-2">
         {#each fitnessMeasurements as fitnessMeasurement}
             <div>{fitnessMeasurement.date}</div>
         {/each}

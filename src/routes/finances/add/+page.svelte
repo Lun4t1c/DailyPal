@@ -1,10 +1,8 @@
 <script lang="ts">
 	import { enhance } from "$app/forms";
-	import type { FinanceSourceModel } from "$lib/models/financeSourceModel";
 
     let name = '';
     let startingAmount = 0;
-
 </script>
 
 
@@ -13,13 +11,12 @@
     method="POST"
     use:enhance>
 
-
     <div class="flex-col">
         <label for="nameInput">Name: </label>
         <input name="name" id="nameInput" class="border-2" type="text" bind:value={name}>
 
         <label for="startingAmount">Starting amount: </label>
-        <input name="startingAmount" id="startingAmount" class="border-2" type="number" bind:value={startingAmount}>
+        <input name="startingAmount" id="startingAmount" type="number" step="0.01" class="border-2" bind:value={startingAmount}>
 
         <button type="submit" class="border-2">Add</button>
     </div>

@@ -1,10 +1,5 @@
 # DailyPal TODO
 
-### Server
-
-- [ ] Move inserting getting data to server side  
-  - [ ] Implement http methods  
-
 ### Frontend
 - [ ] Refactor Modal component
   - [ ] Deal with 'window is not defined' error
@@ -17,18 +12,21 @@
     - [ ] Delete completed todos after X time (specified by user)  
     - [ ] Nested todos  
 
-  - [ ] DaysSince module
+  - [ ] Streaks module
 
   - [ ] Finances  
     - [ ] FinanceSources CRUD
     - [ ] Ask user for confirmation when deleting
-    - [ ] transactions CRUD
+    - [ ] Transactions CRUD
+
+  - [ ] Fitness  
+    - [ ] Implement charts for FitnessMeasurements  
 
 - [ ] Components  
   - [ ] Todo component  
-  - [ ] Streak component  
+  - [X] Streak component  
   - [ ] Finance component  
-  - [ ] Fitness component  
+  - [X] Fitness component  
     
 
 ### Styling

@@ -6,7 +6,7 @@
 
 
 <body>
-    <div class="border-2 border-red-600 m-4">
-        {financeSource.name}
+    <div class="border-2 border-red-600 bg-white m-4">
+        {financeSource.name} : {financeSource.valueInPennies}
     </div>
 </body>
