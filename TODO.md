@@ -14,6 +14,8 @@
     - [ ] Delete completed todos after X time (specified by user)  
     - [ ] Nested todos  
 
+  - [ ] Time spent module  
+
   - [ ] Streaks module
 
   - [ ] Finances  
