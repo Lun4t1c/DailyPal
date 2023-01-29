@@ -42,6 +42,7 @@
 - [ ] Write proper README
 - [ ] Prepare for deployment on Netlify (install adapter https://kit.svelte.dev/docs/adapter-netlify)
 - [ ] Prepare app for multi-user possibilities
+- [ ] IMPORTANT: User register validation (https://youtu.be/E3VG-dLCRUk?t=832)
 
 ### In Progress
 

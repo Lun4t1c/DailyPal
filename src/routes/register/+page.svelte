@@ -1,0 +1,28 @@
+<script lang="ts">
+	import type { ActionData } from "../$types";
+
+    export let form: ActionData;
+</script>
+
+
+<body>
+    <h1>Register</h1>
+
+    <form method="POST" action="?/register">
+        <div>
+            <label for="username">Username</label>
+            <input id="username" name="username" type="text" required class="border-2">
+        </div>
+
+        <div>
+            <label for="password">Password</label>
+            <input id="password" name="password" type="password" required class="border-2">
+        </div>
+
+        {#if form?.user}
+            <p class="error">Username already taken.</p>
+        {/if}
+
+        <button class="btn" type="submit">Register</button>
+    </form>
+</body>

@@ -1,7 +1,6 @@
 <script lang="ts">
     import { enhance } from "$app/forms";
 	import { goto } from "$app/navigation";
-	import ComboBoxComponent from "$lib/components/ComboBoxComponent.svelte";
 	import Modal, { getModal } from "$lib/components/Modal.svelte";
 	import FinanceSourceComponent from "$lib/components/modelComponents/FinanceSourceComponent.svelte";
 	import type { FinanceSourceModel } from "$lib/models/financeSourceModel";
