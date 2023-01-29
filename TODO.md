@@ -19,9 +19,9 @@
   - [ ] Streaks module
 
   - [ ] Finances  
-    - [ ] FinanceSources CRUD
-    - [ ] Ask user for confirmation when deleting
-    - [ ] Transactions CRUD
+    - [ ] FinanceSources CRUD  
+    - [ ] Ask user for confirmation when deleting  
+    - [ ] Transactions CRUD  
 
   - [ ] Fitness  
     - [ ] Implement charts for FitnessMeasurements  
@@ -31,6 +31,8 @@
   - [X] Streak component  
   - [ ] Finance component  
   - [X] Fitness component  
+
+- [ ] Check Prisma and potentially rewrite models
 
 ### Styling
 
