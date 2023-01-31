@@ -1,5 +1,10 @@
 # DailyPal TODO
 
+### Backend
+
+- [ ] Check why login result feedback is not showing up  
+- [ ] Check Prisma and potentially rewrite models  
+
 ### Frontend
 - [ ] Refactor Modal component
   - [ ] Deal with 'window is not defined' error
@@ -32,7 +37,8 @@
   - [ ] Finance component  
   - [X] Fitness component  
 
-- [ ] Check Prisma and potentially rewrite models
+- [ ] *Move user login, registration and logout to separate route
+
 
 ### Styling
 
