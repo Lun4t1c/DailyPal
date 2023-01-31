@@ -1,12 +1,21 @@
 <script lang="ts">
-	import type { ActionData } from "../$types";
+	import { applyAction, enhance } from "$app/forms";
+	import { invalidateAll } from "$app/navigation";
+	import type { ActionData } from "../../$types";
 
     export let form: ActionData;
 </script>
 
 
+<h1>Login</h1>
+
 <body>
-    <form method="POST" action="?/login">
+    <form method="POST" action="?/login" use:enhance={() => {
+        return async ({ result }) => {
+            invalidateAll();
+            await applyAction(result);
+        }
+    }}>
         <div>
             <label for="username">Username</label>
             <input id="username" name="username" type="text" required class="border-2">

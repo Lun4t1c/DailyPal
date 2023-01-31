@@ -2,8 +2,10 @@ import { redirect, type Actions } from "@sveltejs/kit";
 import type { Action, PageServerLoad } from "./$types";
 import db from '$db/mongo';
 
-export const load: PageServerLoad = async () => {
-    // TODO
+export const load: PageServerLoad = async ({locals}) => {
+    if (locals.user) {
+        throw redirect(302, '/');
+    }
 }
 
 const login: Action = async ({ cookies, request }) => {
