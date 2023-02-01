@@ -1,10 +1,11 @@
 import type { Actions, PageServerLoad } from "./$types";
 import { fitnessMeasurementsCollection } from "$db/fitnessMeasurementsCollection";
 import type { FitnessMeasurementModel } from "$lib/models/fitnessMeasurementModel";
+import { ObjectId } from "mongodb";
 
-export const load: PageServerLoad = async function name() {
+export const load: PageServerLoad = async ({locals}) => {
     const data = await fitnessMeasurementsCollection
-        .find({})
+        .find({_idUser: new ObjectId(locals.user._id)})
         .sort({ date: -1 })
         .toArray();
 
@@ -14,11 +15,12 @@ export const load: PageServerLoad = async function name() {
 }
 
 export const actions: Actions = {
-    default: async ({request}) => {
+    default: async ({request, locals}) => {
         const data = await request.formData();
 
-        try{      
+        try {
             const fitnessMeasurement: FitnessMeasurementModel = {
+                _idUser: new ObjectId(locals.user._id),
                 date: new Date(data.get('date') as string),
                 weight: parseFloat(data.get('weight') as string),
                 bmi: parseFloat(data.get('bmi') as string),
@@ -30,7 +32,6 @@ export const actions: Actions = {
                 metabolicAge: parseFloat(data.get('metabolicAge') as string),
             };
 
-            console.log('obj: ', fitnessMeasurement)
             fitnessMeasurementsCollection.insertOne(fitnessMeasurement);
     
             return {

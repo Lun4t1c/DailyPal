@@ -4,6 +4,7 @@
 
 - [ ] Check why login result feedback is not showing up  
 - [ ] Check Prisma and potentially rewrite models  
+- [ ] Users emails
 
 ### Frontend
 - [ ] Refactor Modal component
@@ -27,6 +28,8 @@
     - [ ] FinanceSources CRUD  
     - [ ] Ask user for confirmation when deleting  
     - [ ] Transactions CRUD  
+    - [ ] Move adding transaction to FinanceSourceComponent
+    - [ ] Transaction description
 
   - [ ] Fitness  
     - [ ] Implement charts for FitnessMeasurements  
