@@ -14,13 +14,15 @@ export const handle: Handle = async ({event, resolve}) => {
     const user = await db.collection('users').findOne(
         {userAuthToken: session},
         {projection: {
+            _id: 1,
             username: 1
         }}
     );
 
     if (user) {
         event.locals.user = {
-            name: user.username
+            _id: user._id.toString(),
+            name: user.username            
         }
     }
 

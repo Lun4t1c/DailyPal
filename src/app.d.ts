@@ -6,6 +6,7 @@ declare global {
 		// interface Error {}
 		interface Locals {
 			user: {
+				_id: string,
 				name: string
 			}
 		}

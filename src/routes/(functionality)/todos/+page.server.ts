@@ -1,21 +1,26 @@
 import { todosCollection } from "$db/todosCollection";
 import type { TodoModel } from "$lib/models/todoModel";
 import { dateOrNull } from "$lib/utils/helpers";
+import { ObjectId } from "mongodb";
 import type { Actions, PageServerLoad } from "./$types";
 
-export const load: PageServerLoad = async function name() {
-    const data = await todosCollection.find({}).toArray();
+export const load: PageServerLoad = async function name({locals}) {
+    const data = await todosCollection
+        .find({_idUser: new ObjectId(locals.user._id)})
+        .toArray();
+
     return {
         todos: JSON.parse(JSON.stringify(data))
     }
 }
 
 export const actions: Actions = {
-    default: async ({request}) => {
+    default: async ({request, locals}) => {
         const data = await request.formData();
 
         try{
             const todo: TodoModel = {
+                _idUser: new ObjectId(locals.user._id),
                 title: data.get('title') as string,
                 remind: dateOrNull(data.get('remind') as string),
                 deadline: dateOrNull(data.get('deadline') as string)
