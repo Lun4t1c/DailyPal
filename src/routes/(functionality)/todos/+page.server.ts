@@ -1,10 +1,13 @@
 import { todosCollection } from "$db/todosCollection";
 import type { TodoModel } from "$lib/models/todoModel";
 import { dateOrNull } from "$lib/utils/helpers";
+import { redirect } from "@sveltejs/kit";
 import { ObjectId } from "mongodb";
 import type { Actions, PageServerLoad } from "./$types";
 
 export const load: PageServerLoad = async function name({locals}) {
+    if (!locals.user) throw redirect(302, '/login');
+
     const data = await todosCollection
         .find({_idUser: new ObjectId(locals.user._id)})
         .toArray();

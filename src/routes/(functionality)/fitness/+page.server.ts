@@ -2,8 +2,11 @@ import type { Actions, PageServerLoad } from "./$types";
 import { fitnessMeasurementsCollection } from "$db/fitnessMeasurementsCollection";
 import type { FitnessMeasurementModel } from "$lib/models/fitnessMeasurementModel";
 import { ObjectId } from "mongodb";
+import { redirect } from "@sveltejs/kit";
 
 export const load: PageServerLoad = async ({locals}) => {
+    if (!locals.user) throw redirect(302, '/login');
+
     const data = await fitnessMeasurementsCollection
         .find({_idUser: new ObjectId(locals.user._id)})
         .sort({ date: -1 })
