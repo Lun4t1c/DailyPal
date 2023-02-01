@@ -1,9 +1,8 @@
-/** Returns today's date as string 'yyyy-mm-dd', beacues TypeScript is too stupid to do it itself */
-export function getTodayDateString(): string{
-    let today: Date = new Date();
-    let month: string = '' + (today.getMonth() + 1);
-    let day: string = '' + today.getDate();
-    let year: string = today.getFullYear().toString();
+/** Returns date as 'yyyy-mm-dd' string, beacues TypeScript is too stupid to do it itself */
+export function formatDate(date: Date): string {
+    let month: string = '' + (date.getMonth() + 1);
+    let day: string = '' + date.getDate();
+    let year: string = date.getFullYear().toString();
 
     if (month.length < 2) 
         month = '0' + month;
@@ -12,6 +11,11 @@ export function getTodayDateString(): string{
 
     let dateString: string = [year, month, day].join('-');
     return dateString
+}
+
+/** Returns today's date as string 'yyyy-mm-dd' */
+export function getTodayDateString(): string{    
+    return formatDate(new Date());
 }
 
 /** Return null if @param dateString is an empty string 
