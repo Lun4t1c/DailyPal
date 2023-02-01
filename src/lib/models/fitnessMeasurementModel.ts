@@ -3,6 +3,7 @@ import type { ObjectId } from "mongodb";
 
 export interface FitnessMeasurementModel {
     _id?: ObjectId | undefined,
+    _idUser: ObjectId,
     date: Date,
     weight: number,
     bmi: number,
