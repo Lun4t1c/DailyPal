@@ -72,4 +72,30 @@ export const actions: Actions = {
             }
         }
     },
+
+    breakStreak: async ({request}) => {
+        const data = await request.formData();
+        
+        try {
+            await streaksCollection.updateOne(
+                { _id: new ObjectId(data.get('_id') as string) },
+                { $push: { breaks: new Date(data.get('breakDate') as string) } }
+            );
+
+            return {
+                status: 200,
+                body: {
+                    status: 'Success'
+                }
+            }
+        }
+        catch (error) {
+            return {
+                status: 500,
+                body: {
+                    status: 'Error'
+                }
+            }
+        }
+    }
 }

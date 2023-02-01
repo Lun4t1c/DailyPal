@@ -22,19 +22,6 @@
 
         return days + ' days';
     }
-
-    const handleSubmit = async (event: any) => {
-        event.preventDefault();
-        let id = streak._id;
-
-        const res = await fetch('/streaks', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ id })
-        });
-
-        const data = await res.json();
-    };
 </script>
 
 
@@ -42,6 +29,15 @@
     <div class="border-2">
         <h2>{streak.name}</h2>
         <div>{getDaysPassedString()}</div>
+
+        <form
+            method="POST"
+            action="?/breakStreak"
+            use:enhance>
+            <input type="hidden" name="_id" hidden value="{streak._id}"/>
+            <input type="hidden" name="breakDate" hidden value="{new Date()}"/>
+            <button type="submit">Break</button>
+        </form>
 
         <form
             method="POST"
