@@ -13,12 +13,12 @@
 </script>
 
 
-<body>
+<body class="flex flex-col">
     <div>Streaks</div>
 
     <button on:click={() => getModal('addStreakModal').open()}>Add streak</button>
     
-    <div class="flex-col p-5 bg-amber-500">
+    <div class="flex flex-wrap p-5 bg-amber-500">
     {#each streaks as streak}
         <StreakComponent streak={streak}></StreakComponent>
     {/each}

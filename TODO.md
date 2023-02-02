@@ -5,6 +5,7 @@
 - [ ] Check why login result feedback is not showing up  
 - [ ] Check Prisma and potentially rewrite models  
 - [ ] Users emails
+- [ ] Reloading in browser causes 500 internal server error
 
 ### Frontend
 - [ ] Refactor Modal component
@@ -30,6 +31,7 @@
     - [ ] Transactions CRUD  
     - [ ] Move adding transaction to FinanceSourceComponent
     - [ ] Transaction description
+    - [ ] Format money display value
 
   - [ ] Fitness  
     - [ ] Implement charts for FitnessMeasurements  

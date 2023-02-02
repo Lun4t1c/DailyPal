@@ -1,5 +1,6 @@
 import { streaksCollection } from "$db/streaksCollection";
 import type { StreakModel } from "$lib/models/streakModel";
+import { formatDate } from "$lib/utils/helpers";
 import { redirect, type Actions } from "@sveltejs/kit";
 import { ObjectId } from "mongodb";
 import type { PageServerLoad } from "./$types";
@@ -36,7 +37,7 @@ export const actions: Actions = {
                 body: {
                     status: 'Success'
                 }
-            }
+            };
         }
         catch (error) {
             return {
@@ -44,7 +45,7 @@ export const actions: Actions = {
                 body: {
                     status: 'Error'
                 }
-            }
+            };
         }
     },
 
@@ -61,7 +62,7 @@ export const actions: Actions = {
                 body: {
                     status: 'Success'
                 }
-            }
+            };
         }
         catch (error) {
             return {
@@ -69,7 +70,7 @@ export const actions: Actions = {
                 body: {
                     status: 'Error'
                 }
-            }
+            };
         }
     },
 
@@ -79,7 +80,7 @@ export const actions: Actions = {
         try {
             await streaksCollection.updateOne(
                 { _id: new ObjectId(data.get('_id') as string) },
-                { $push: { breaks: new Date(data.get('breakDate') as string) } }
+                { $push: { breaks: new Date(formatDate(new Date(data.get('breakDate') as string))) } }
             );
 
             return {
@@ -87,7 +88,7 @@ export const actions: Actions = {
                 body: {
                     status: 'Success'
                 }
-            }
+            };
         }
         catch (error) {
             return {
@@ -95,7 +96,7 @@ export const actions: Actions = {
                 body: {
                     status: 'Error'
                 }
-            }
+            };
         }
     }
 }
