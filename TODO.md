@@ -40,9 +40,6 @@
   - [ ] Finance component  
   - [X] Fitness component  
 
-- [ ] *Move user login, registration and logout to separate route
-
-
 ### Styling
 
 - [ ] Find some temporary ready to go css styles
