@@ -10,10 +10,12 @@ export const load: PageServerLoad = async ({locals}) => {
 
 export const actions: Actions = { 
     login: async ({ cookies, request }) => {
+        console.log('logging in...');
         const data = await request.formData();
-        const username: string = data.get('username') as  string;
-        const password: string = data.get('password') as  string;
+        const username: string = data.get('username') as string;
+        const password: string = data.get('password') as string;
         
+        console.log('getting user from db...');
         const user = await db.collection('users').findOne({ username: username });
     
         if (!user){
@@ -25,12 +27,14 @@ export const actions: Actions = {
             };
         }
     
+        console.log('authenticating user...');
         const authToken: string = crypto.randomUUID();
         const authenticatedUser = await db.collection('users').updateOne(
             { username: user.username },
             { $set: {userAuthToken: authToken} }
         );
     
+        console.log('setting cookies...');
         cookies.set('session', authToken, {
             path: '/',
             httpOnly: true,
@@ -39,6 +43,7 @@ export const actions: Actions = {
             maxAge: 60 * 60 * 24 * 30
         });
     
+        console.log('all done');
         throw redirect(302, '/');
     }
 }
