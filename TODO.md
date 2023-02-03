@@ -6,6 +6,7 @@
 - [ ] Check Prisma and potentially rewrite models  
 - [ ] Users emails
 - [ ] Reloading in browser causes 500 internal server error
+- [ ] Add Heroku ip addresses pool to Mongodb atlas
 
 ### Frontend
 - [ ] Refactor Modal component
