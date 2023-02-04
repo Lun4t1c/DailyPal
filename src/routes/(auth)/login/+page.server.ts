@@ -1,3 +1,4 @@
+import bcrypt from 'bcryptjs';
 import { redirect, type Actions } from "@sveltejs/kit";
 import type { Action, PageServerLoad } from "./$types";
 import db from '$db/mongo';
@@ -11,12 +12,17 @@ export const load: PageServerLoad = async ({locals}) => {
 export const actions: Actions = { 
     login: async ({ cookies, request }) => {
         console.log('logging in...');
+
         const data = await request.formData();
         const username: string = data.get('username') as string;
         const password: string = data.get('password') as string;
         
         console.log('getting user from db...');
-        const user = await db.collection('users').findOne({ username: username });
+
+        console.log(username, ' : ', await bcrypt.hash(password, 0));
+        const user = await db.collection('users').findOne(
+            { username: username }
+        );
     
         if (!user){
             return {
@@ -28,6 +34,18 @@ export const actions: Actions = {
         }
     
         console.log('authenticating user...');
+
+        if (!await bcrypt.compare(password, user.password)){
+            return {
+                status: 400,
+                body: {
+                    credentials: true,
+                },
+            };
+        }
+
+        console.log('setting cookies...');
+
         const authToken: string = crypto.randomUUID();
         const authenticatedUser = await db.collection('users').updateOne(
             { username: user.username },
@@ -35,6 +53,7 @@ export const actions: Actions = {
         );
     
         console.log('setting cookies...');
+
         cookies.set('session', authToken, {
             path: '/',
             httpOnly: true,
@@ -44,6 +63,7 @@ export const actions: Actions = {
         });
     
         console.log('all done');
+
         throw redirect(302, '/');
     }
 }
