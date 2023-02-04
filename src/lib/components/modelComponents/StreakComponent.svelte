@@ -1,8 +1,11 @@
 <script lang="ts">
-	import { enhance } from "$app/forms";
+	import { applyAction, enhance } from "$app/forms";
+	import { invalidate, invalidateAll } from "$app/navigation";
 	import type { StreakModel } from "$lib/models/streakModel";
 
     export let streak: StreakModel;
+
+    let daysPassedString: string = getDaysPassedString();
 
     function getLastBreak(): Date | null {
         if (streak.breaks.length <= 0) return null;
@@ -28,12 +31,17 @@
 <body>
     <div class="flex flex-col justify-center m-1 bg-white border-2">
         <h2 class="self-center">{streak.name}</h2>
-        <div class="self-center">{getDaysPassedString()}</div>
+        <div class="self-center">{daysPassedString}</div>
 
         <form
             method="POST"
             action="?/breakStreak"
-            use:enhance>
+            use:enhance={() => {
+                return async ({result}) => {                    
+                    await applyAction(result);
+                    daysPassedString = 0 + ' days';
+                }
+            }}>
 
             <input type="hidden" name="_id" hidden value="{streak._id}"/>
             <input type="hidden" name="breakDate" hidden value="{new Date()}"/>
