@@ -1,5 +1,5 @@
 import bcrypt from 'bcryptjs';
-import type { PageServerLoad } from '../$types';
+import type { PageServerLoad } from './$types';
 import type { Action, Actions } from './$types';
 import db from '$db/mongo';
 import { redirect } from '@sveltejs/kit';
