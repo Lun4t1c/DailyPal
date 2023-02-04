@@ -2,7 +2,7 @@
 
 ### Backend
 
-- [ ] Check why login result feedback is not showing up  
+- [X] Check why login result feedback is not showing up  
 - [ ] Check Prisma and potentially rewrite models  
 - [ ] Users emails
 - [ ] Reloading in browser causes 500 internal server error
