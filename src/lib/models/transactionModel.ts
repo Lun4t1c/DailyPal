@@ -5,7 +5,6 @@ export interface TransactionModel {
     _idFinanceSource: ObjectId,
     amountInPennies: number,
     description: string | null,
-    isNegative: boolean
     date: Date,
     isMonthly: boolean
 }

@@ -11,6 +11,8 @@
     export let data: PageData;
     $: ({ financeSources } = data)
 
+    let _idFinanceSource: ObjectId;
+
     function goToFinanceById(id: ObjectId): void {
         goto('/finances/source/' + id.toString());
     }
@@ -52,17 +54,22 @@
         <form method="POST" action="?/addTransaction" use:enhance>
             <div class="flex flex-col mt-3">
                 <label for="date">Date: </label>
-                <input name="date" id="date" type="date"class="border-2"
+                <input name="date" id="date" type="date" 
                     value="{getTodayDateString()}">
     
                 <label for="amount">Amount: </label>
-                <input name="amount" id="amount" type="number" step="0.01" class="border-2">
+                <input name="amount" id="amount" type="number" step="0.01">
 
-                <label for="isNegative">Is negative: </label>
-                <input name="isNegative" id="isNegative" type="checkbox" class="border-2">
+                <label for="description">Description (optional): </label>
+                <input name="description" id="description" type="text">
 
-                <label for="isMonthly">Is monthly: </label>
-                <input name="isMonthly" id="isMonthly" type="checkbox" class="border-2">
+                {#each financeSources as financeSource}
+                    <label>
+                        <input name="_idFinanceSource" type="radio" value="{financeSource._id}" bind:group="{_idFinanceSource}">
+                        {financeSource.name}
+                    </label>
+                    
+                {/each}
     
                 <button type="submit">
                     Add

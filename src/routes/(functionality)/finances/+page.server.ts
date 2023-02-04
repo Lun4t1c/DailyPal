@@ -21,18 +21,23 @@ export const load: PageServerLoad = async function name({locals}) {
 export const actions: Actions = {
     addTransaction: async ({request}) => {
         const data = await request.formData();
+        const descriptionTemp: string = data.get('description') as string;
 
         try{
             let transaction: TransactionModel = {
-                _idFinanceSource: new ObjectId(data.get('idFinanceSource') as string),
-                amountInPennies: parseFloat(data.get('amountInPennies') as string) * 100,
-                description: null,
-                isNegative: stringToBoolean(data.get('isNegative') as string),
+                _idFinanceSource: new ObjectId(data.get('_idFinanceSource') as string),
+                amountInPennies: Math.floor(parseFloat(data.get('amount') as string) * 100),
+                description: descriptionTemp !== '' ? descriptionTemp : null,
                 date: new Date(data.get('date') as string),
-                isMonthly: stringToBoolean(data.get('isMonthly') as string)
+                isMonthly: false
             };
 
             transactionsCollection.insertOne(transaction);
+
+            financeSourcesCollection.updateOne(
+                { _id: transaction._idFinanceSource },
+                { $inc: { valueInPennies: transaction.amountInPennies } }
+            );
 
             return {
                 status: 200,
@@ -42,6 +47,8 @@ export const actions: Actions = {
             }
         }
         catch (error) {
+            console.error(error);
+            
             return {
                 status: 500,
                 body: {
