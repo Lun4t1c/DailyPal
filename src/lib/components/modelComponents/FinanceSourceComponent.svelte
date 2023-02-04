@@ -21,7 +21,7 @@
 
 <body>
     <div class="border-2 border-red-600 bg-white m-4">
-        {financeSource.name} : {financeSource.valueInPennies / 100} PLN
+        {financeSource.name} : {(financeSource.valueInPennies / 100).toLocaleString("pl-PL", {style: "currency", currency: "PLN", minimumFractionDigits: 2})}
         <form method="POST" action="?/delete" use:enhance>
             <input type="hidden" name="_id" hidden value="{financeSource._id}"/>
             <button type="submit" class="btn">Delete</button>

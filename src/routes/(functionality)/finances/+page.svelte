@@ -19,7 +19,7 @@
         goto('/finances/add');
     }
 
-    function getTotalMoney(): number {
+    function getTotalMoneyString(): string {
         let result: number = 0;
 
         for (let i in financeSources) {
@@ -27,7 +27,7 @@
         }
 
         result /= 100;
-        return result;
+        return result.toLocaleString("pl-PL", {style: "currency", currency: "PLN", minimumFractionDigits: 2});
     }
 </script>
 
@@ -45,7 +45,7 @@
     </div>
     
     <div>
-        Total: {getTotalMoney()} PLN
+        Total: {getTotalMoneyString()}
     </div>
 
     <Modal id="AddTransactionModal">
