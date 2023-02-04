@@ -12,6 +12,7 @@
     $: ({ financeSources } = data)
 
     let _idFinanceSource: ObjectId;
+    let isMonthly: boolean = false;
 
     function goToFinanceById(id: ObjectId): void {
         goto('/finances/source/' + id.toString());
@@ -53,15 +54,23 @@
     <Modal id="AddTransactionModal">
         <form method="POST" action="?/addTransaction" use:enhance>
             <div class="flex flex-col mt-3">
-                <label for="date">Date: </label>
-                <input name="date" id="date" type="date" 
-                    value="{getTodayDateString()}">
+                {#if isMonthly !== true}
+                    <label for="date">Date: </label>
+                    <input name="date" id="date" type="date" 
+                        value="{getTodayDateString()}">
+                {:else}
+                    <label for="date">Day of the month: </label>
+                    <input name="date" id="date" type="number" value="1">
+                {/if}
     
                 <label for="amount">Amount: </label>
                 <input name="amount" id="amount" type="number" step="0.01">
 
                 <label for="description">Description (optional): </label>
                 <input name="description" id="description" type="text">
+
+                <label for="isMonthly">Is monthly: </label>
+                <input name="isMonthly" id="isMonthly" type="checkbox" bind:checked={isMonthly}>
 
                 {#each financeSources as financeSource}
                     <label>

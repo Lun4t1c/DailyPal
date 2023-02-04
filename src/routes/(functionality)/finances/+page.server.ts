@@ -22,22 +22,25 @@ export const actions: Actions = {
     addTransaction: async ({request}) => {
         const data = await request.formData();
         const descriptionTemp: string = data.get('description') as string;
+        const isMonthly: boolean = stringToBoolean(data.get('isMonthly') as string);
 
         try{
             let transaction: TransactionModel = {
                 _idFinanceSource: new ObjectId(data.get('_idFinanceSource') as string),
                 amountInPennies: Math.floor(parseFloat(data.get('amount') as string) * 100),
                 description: descriptionTemp !== '' ? descriptionTemp : null,
-                date: new Date(data.get('date') as string),
-                isMonthly: false
+                date: isMonthly ? parseInt(data.get('date') as string) : new Date(data.get('date') as string),
+                isMonthly: isMonthly
             };
 
             transactionsCollection.insertOne(transaction);
 
-            financeSourcesCollection.updateOne(
-                { _id: transaction._idFinanceSource },
-                { $inc: { valueInPennies: transaction.amountInPennies } }
-            );
+            if (!isMonthly){
+                financeSourcesCollection.updateOne(
+                    { _id: transaction._idFinanceSource },
+                    { $inc: { valueInPennies: transaction.amountInPennies } }
+                );
+            }
 
             return {
                 status: 200,
