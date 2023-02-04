@@ -24,15 +24,16 @@
 
   - [ ] Time spent module  
 
-  - [ ] Streaks module
+  - [X] Streaks module
 
   - [ ] Finances  
     - [ ] FinanceSources CRUD  
     - [ ] Ask user for confirmation when deleting  
     - [ ] Transactions CRUD  
     - [ ] Move adding transaction to FinanceSourceComponent
-    - [ ] Transaction description
-    - [ ] Format money display value
+    - [X] Transaction description
+    - [X] Format money display value
+    - [ ] Predicted money amount component
 
   - [ ] Fitness  
     - [ ] Implement charts for FitnessMeasurements  
@@ -51,8 +52,7 @@
 ### Misc
 
 - [ ] Write proper README
-- [ ] Prepare for deployment on Netlify (install adapter https://kit.svelte.dev/docs/adapter-netlify)
-- [ ] Prepare app for multi-user possibilities
+- [X] Prepare app for multi-user possibilities
 - [ ] IMPORTANT: User register validation (https://youtu.be/E3VG-dLCRUk?t=832)
 
 ### In Progress

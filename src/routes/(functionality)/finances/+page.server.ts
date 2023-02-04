@@ -9,23 +9,29 @@ import { redirect } from "@sveltejs/kit";
 export const load: PageServerLoad = async function name({locals}) {
     if (!locals.user) throw redirect(302, '/login');
 
-    const data = await financeSourcesCollection
+    const financeSources = await financeSourcesCollection
+        .find({_idUser: new ObjectId(locals.user._id)})
+        .toArray();
+
+    const transactions = await transactionsCollection
         .find({_idUser: new ObjectId(locals.user._id)})
         .toArray();
 
     return {
-        financeSources: JSON.parse(JSON.stringify(data))
+        financeSources: JSON.parse(JSON.stringify(financeSources)),
+        transactions: JSON.parse(JSON.stringify(transactions))
     }
 }
 
 export const actions: Actions = {
-    addTransaction: async ({request}) => {
+    addTransaction: async ({request, locals}) => {
         const data = await request.formData();
         const descriptionTemp: string = data.get('description') as string;
         const isMonthly: boolean = stringToBoolean(data.get('isMonthly') as string);
 
         try{
             let transaction: TransactionModel = {
+                _idUser: new ObjectId(locals.user._id),
                 _idFinanceSource: new ObjectId(data.get('_idFinanceSource') as string),
                 amountInPennies: Math.floor(parseFloat(data.get('amount') as string) * 100),
                 description: descriptionTemp !== '' ? descriptionTemp : null,

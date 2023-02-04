@@ -1,6 +1,7 @@
 <script lang="ts">
     import { enhance } from "$app/forms";
 	import { goto } from "$app/navigation";
+	import FinancesPredictionComponent from "$lib/components/FinancesPredictionComponent.svelte";
 	import Modal, { getModal } from "$lib/components/Modal.svelte";
 	import FinanceSourceComponent from "$lib/components/modelComponents/FinanceSourceComponent.svelte";
 	import type { FinanceSourceModel } from "$lib/models/financeSourceModel";
@@ -9,7 +10,7 @@
     import type { PageData } from "./$types";
 
     export let data: PageData;
-    $: ({ financeSources } = data)
+    $: ({ financeSources, transactions } = data)
 
     let _idFinanceSource: ObjectId;
     let isMonthly: boolean = false;
@@ -50,6 +51,7 @@
     <div>
         Total: {getTotalMoneyString()}
     </div>
+    <button on:click={() => getModal('PredictModal').open()}>Predict</button>
 
     <Modal id="AddTransactionModal">
         <form method="POST" action="?/addTransaction" use:enhance>
@@ -86,4 +88,10 @@
         </form>
     </Modal>
 
+    <Modal id="PredictModal">
+        <FinancesPredictionComponent 
+            financeSources={financeSources}
+            monthlyTransactions={transactions.filter(t => t.isMonthly === true)}>
+        </FinancesPredictionComponent>
+    </Modal>
 </body>
