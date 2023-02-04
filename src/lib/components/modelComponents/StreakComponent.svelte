@@ -2,6 +2,7 @@
 	import { applyAction, enhance } from "$app/forms";
 	import { invalidate, invalidateAll } from "$app/navigation";
 	import type { StreakModel } from "$lib/models/streakModel";
+	import { formatDate } from "$lib/utils/helpers";
 
     export let streak: StreakModel;
 
@@ -39,7 +40,8 @@
             use:enhance={() => {
                 return async ({result}) => {                    
                     await applyAction(result);
-                    daysPassedString = 0 + ' days';
+                    streak.breaks.push(new Date(formatDate(new Date())));
+                    daysPassedString = getDaysPassedString();
                 }
             }}>
 
