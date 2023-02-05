@@ -1,1 +1,1 @@
-<h1>Coś się popsuło :(</h1>
+<h1>Something went wrong :(</h1>

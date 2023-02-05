@@ -11,7 +11,7 @@ export const actions: Actions = {
             const financeSource: FinanceSourceModel = {
                 _idUser: new ObjectId(locals.user._id),
                 name: data.get('name') as string,
-                valueInPennies: parseFloat(data.get('startingAmount') as string)  * 100
+                valueInPennies: Math.floor(parseFloat(data.get('startingAmount') as string)  * 100)
             };
 
             financeSourcesCollection.insertOne(financeSource);

@@ -2,6 +2,7 @@
     import Modal, { getModal } from "$lib/components/Modal.svelte";
     import { enhance } from "$app/forms";
     import type { PageData } from "./$types";
+	import TodoComponent from "$lib/components/modelComponents/TodoComponent.svelte";
 
     export let data: PageData;
 
@@ -18,17 +19,7 @@
     
     <div class="flex-col p-5 bg-amber-500">
     {#each todos as todo}
-        <div class="border-2">
-            <h2>{todo.title}</h2>
-
-            <form
-                method="POST"
-                action="?/delete"
-                use:enhance>
-                <input type="hidden" name="_id" hidden value="{todo._id}"/>
-                <button type="submit">Delete</button>
-            </form>
-        </div>
+        <TodoComponent todo={todo}></TodoComponent>
     {/each}
     </div>   
     
@@ -36,6 +27,7 @@
 	<Modal id="main">
 		<form
             method="POST"
+            action="?/addTodo"
             use:enhance>
 
             <div class="flex flex-col">

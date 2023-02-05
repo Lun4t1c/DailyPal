@@ -13,3 +13,7 @@ button {
     @apply bg-blue-500 text-white;
     @apply hover:bg-blue-700;
 }
+
+input {
+    @apply border-2;
+}

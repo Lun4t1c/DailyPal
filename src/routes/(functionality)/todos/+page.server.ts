@@ -18,7 +18,7 @@ export const load: PageServerLoad = async function name({locals}) {
 }
 
 export const actions: Actions = {
-    default: async ({request, locals}) => {
+    addTodo: async ({request, locals}) => {
         const data = await request.formData();
 
         try{
@@ -28,8 +28,6 @@ export const actions: Actions = {
                 remind: dateOrNull(data.get('remind') as string),
                 deadline: dateOrNull(data.get('deadline') as string)
             };
-
-            console.log('obj: ', todo)
 
             todosCollection.insertOne(todo);
     
@@ -41,6 +39,29 @@ export const actions: Actions = {
             }
         }
         catch (error) {
+            return {
+                status: 500,
+                body: {
+                    status: 'Error'
+                }
+            }
+        }
+    },
+
+    deleteTodo: async ({request}) => {
+        try{
+            const data = await request.formData();
+            todosCollection.deleteOne({_id: new ObjectId(data.get('_id') as string)});
+            return {
+                status: 200,
+                body: {
+                    status: 'Success'
+                }
+            }
+        }
+        catch (error) {
+            console.error(error);
+
             return {
                 status: 500,
                 body: {

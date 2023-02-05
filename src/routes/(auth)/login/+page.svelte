@@ -4,6 +4,12 @@
 	import type { ActionData } from "../../$types";
 
     export let form: ActionData;
+
+    function resetForm(): void{        
+        if (form !== undefined && form !== null){
+            form.body.credentials = false;
+        }
+    }
 </script>
 
 
@@ -26,14 +32,14 @@
             <input id="password" name="password" type="password" required class="border-2">
         </div>
 
-        {#if form?.invalid}
-            <p class="error">Username or password is required.</p>
+        {#if form?.body.invalid}
+            <div>Username or password is required.</div>
         {/if}
 
-        {#if form?.credentials}
-            <p class="error">Username or password is wrong.</p>
+        {#if form?.body.credentials}
+            <div>Username or password is wrong.</div>
         {/if}
 
-        <button class="btn" type="submit">Log in.</button>
+        <button class="btn" type="submit" on:click={() => resetForm()}>Log in.</button>
     </form>
 </body>
