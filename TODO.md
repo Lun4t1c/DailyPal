@@ -36,7 +36,10 @@
     - [ ] Predicted money amount component
 
   - [ ] Fitness  
-    - [ ] Implement charts for FitnessMeasurements  
+    - [ ] Implement charts for FitnessMeasurements
+    - [ ] Meals  
+
+  - [ ]  Calendar module  
 
 - [ ] Components  
   - [ ] Todo component  

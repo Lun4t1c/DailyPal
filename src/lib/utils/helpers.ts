@@ -27,6 +27,8 @@ export function dateOrNull(dateString: string): Date | null{
 
 /** Convert string value to boolean */
 export function stringToBoolean(s: string): boolean {
+    if (s === null) return false;
+    
     switch(s.toLowerCase()){
         case "true":
         case "1":
