@@ -5,6 +5,8 @@ import type { TransactionModel } from "$lib/models/transactionModel";
 import { transactionsCollection } from "$db/transactionsCollection";
 import { stringToBoolean } from "$lib/utils/helpers";
 import { redirect } from "@sveltejs/kit";
+import type { PlannedExpenseModel } from "$lib/models/plannedExpenseModel";
+import { plannedExpensesCollection } from "$db/plannedExpensesCollection";
 
 export const load: PageServerLoad = async function name({locals}) {
     if (!locals.user) throw redirect(302, '/login');
@@ -24,12 +26,12 @@ export const load: PageServerLoad = async function name({locals}) {
 }
 
 export const actions: Actions = {
-    addTransaction: async ({request, locals}) => {
-        const data = await request.formData();
-        const descriptionTemp: string = data.get('description') as string;
-        const isMonthly: boolean = stringToBoolean(data.get('isMonthly') as string);
-
+    addTransaction: async ({request, locals}) => {        
         try{
+            const data = await request.formData();
+            const descriptionTemp: string = data.get('description') as string;
+            const isMonthly: boolean = stringToBoolean(data.get('isMonthly') as string);
+
             let transaction: TransactionModel = {
                 _idUser: new ObjectId(locals.user._id),
                 _idFinanceSource: new ObjectId(data.get('_idFinanceSource') as string),
@@ -58,6 +60,39 @@ export const actions: Actions = {
         catch (error) {
             console.error(error);
             
+            return {
+                status: 500,
+                body: {
+                    status: 'Error'
+                }
+            }
+        }
+    },
+
+    addPlannedExpense: async ({request, locals}) => {
+        try {
+            const data = await request.formData();
+            const descriptionTemp: string = data.get('description') as string;
+
+            const plannedExpense: PlannedExpenseModel = {
+                _idUser: new ObjectId(locals.user._id),
+                _idFinanceSource: data.get('_idFinanceSource') === 'general' ? 'general' : new ObjectId(data.get('_idFinanceSource') as string),
+                valueInPennies: Math.floor(parseFloat(data.get('valueInPennies') as string) * 100),
+                description: descriptionTemp !== '' ? descriptionTemp : null,
+                isTakenIntoAccount: true
+            }
+
+            plannedExpensesCollection.insertOne(plannedExpense);
+
+            return {
+                status: 200,
+                body: {
+                    status: 'Success'
+                }
+            }
+        }
+        catch (error) {
+            console.log(error);
             return {
                 status: 500,
                 body: {

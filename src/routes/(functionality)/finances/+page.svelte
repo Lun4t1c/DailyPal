@@ -37,20 +37,30 @@
 
 
 <body>
-    <div>Finances</div>
+    <div class="flex flex-row">
+        <div class="mr-5">
+            <div>Finances</div>
 
-    <button on:click={goToFinanceAdd} class="btn btn-blue">Add finance source</button>
-    <button on:click={() => getModal('AddTransactionModal').open()} class="btn btn-blue">Add transaction</button>
+            <button on:click={() => goToFinanceAdd()} class="btn btn-blue">Add finance source</button>
+            <button on:click={() => getModal('AddTransactionModal').open()} class="btn btn-blue">Add transaction</button>
     
-    <div class="flex-col p-5 bg-amber-500">
-    {#each financeSources as financeSource}
-        <FinanceSourceComponent financeSource={financeSource}></FinanceSourceComponent>
-    {/each}
-    </div>
+            <div class="flex-col p-5 bg-amber-500">
+            {#each financeSources as financeSource}
+                <FinanceSourceComponent financeSource={financeSource}></FinanceSourceComponent>
+            {/each}
+            </div>
     
-    <div>
-        Total: {getTotalMoneyString()}
+            <div>
+                Total: {getTotalMoneyString()}
+            </div>
+        </div>
+
+        <div>
+            <div>Planned expenses</div>
+            <button on:click={() => getModal('PlannedExpenseModal').open()}>Plan new expense</button>
+        </div>
     </div>
+
     <button on:click={() => getModal('PredictModal').open()}>Predict</button>
 
     <Modal id="AddTransactionModal">
@@ -84,6 +94,32 @@
     
                 <button type="submit">
                     Add
+                </button>
+        </form>
+    </Modal>
+
+    <Modal id="PlannedExpenseModal">
+        <form method="POST" action="?/addPlannedExpense" use:enhance>
+            <div class="flex flex-col mt-3">
+                <label for="valueInPennies">Amount: </label>
+                <input name="valueInPennies" id="valueInPennies" type="number" step="0.01">
+
+                <label for="description">Description (optional): </label>
+                <input name="description" id="description" type="text">
+
+                {#each financeSources as financeSource}
+                    <label>
+                        <input name="_idFinanceSource" type="radio" value="{financeSource._id}" bind:group="{_idFinanceSource}">
+                        {financeSource.name}
+                    </label>                    
+                {/each}
+                <label>
+                    <input name="_idFinanceSource" type="radio" value="general" bind:group="{_idFinanceSource}">
+                    General cost
+                </label>
+    
+                <button type="submit">
+                    Confirm
                 </button>
         </form>
     </Modal>
