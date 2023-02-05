@@ -3,19 +3,6 @@
 	import type { FinanceSourceModel } from "$lib/models/financeSourceModel";
 
     export let financeSource: FinanceSourceModel;
-
-    const handleSubmit = async (event: any) => {
-        event.preventDefault();
-        let id = financeSource._id;
-
-        const res = await fetch('/finances/add-user', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ id })
-        });
-
-        const data = await res.json();
-    };
 </script>
 
 
