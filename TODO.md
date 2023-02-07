@@ -18,7 +18,7 @@
 - [ ] Modules  
 
   - [ ] Todo module  
-    - [ ] Todo CRUD  
+    - [X] Todo CRUD  
     - [ ] Delete completed todos after X time (specified by user)  
     - [ ] Nested todos  
 
@@ -57,6 +57,7 @@
 - [ ] Write proper README
 - [X] Prepare app for multi-user possibilities
 - [ ] IMPORTANT: User register validation (https://youtu.be/E3VG-dLCRUk?t=832)
+- [ ] It is possible to register two user with the same login, fix that
 
 ### In Progress
 

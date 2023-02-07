@@ -27,9 +27,7 @@ export const actions: Actions = {
         if (!user){
             return {
                 status: 400,
-                body: {
-                    credentials: true,
-                },
+                body: { credentials: true, }
             };
         }
     
@@ -38,9 +36,7 @@ export const actions: Actions = {
         if (!await bcrypt.compare(password, user.password)){
             return {
                 status: 400,
-                body: {
-                    credentials: true,
-                },
+                body: { credentials: true, }
             };
         }
 

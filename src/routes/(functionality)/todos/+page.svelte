@@ -18,10 +18,17 @@
     </button>
     
     <div class="flex-col p-5 bg-amber-500">
-    {#each todos as todo}
-        <TodoComponent todo={todo}></TodoComponent>
-    {/each}
-    </div>   
+        {#each todos.filter(t => !t.isDone) as todo}
+            <TodoComponent todo={todo}></TodoComponent>
+        {/each}
+    </div>
+        
+    <div>
+        Done
+        {#each todos.filter(t => t.isDone) as todo}
+            <TodoComponent todo={todo}></TodoComponent>
+        {/each}
+    </div>
     
 
 	<Modal id="main">

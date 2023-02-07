@@ -13,7 +13,7 @@
 
         <form
             method="POST"
-            action="?/todoDone"
+            action="?/switchTodoIsDone"
             use:enhance>
             <input type="hidden" name="_id" hidden value="{todo._id}"/>
             <button class="btn" type="submit">Done</button>
@@ -38,6 +38,7 @@
             use:enhance>
             <div class="flex flex-col">
                 <input type="hidden" name="_id" value="{todo._id}"/>
+                <input type="hidden" name="isDone" value="{todo.isDone}"/>
 
                 <label for="title">Title: </label>
                 <input name="title" id="title" type="text" value="{todo.title}"
@@ -49,7 +50,7 @@
 
                 <label for="deadline">Deadline: </label>
                 <input name="deadline" id="deadline" type="date" value="{todo.deadline}"
-                    class="border-2">
+                    class="border-2">                
 
                 <button type="submit" class="border-2 mt-5" on:click={() => getModal('main').close()}>
                     Save changes

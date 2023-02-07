@@ -20,9 +20,6 @@ const register: Action = async ({request}) => {
     const username: string = data.get('username') as string;
     const password: string = data.get('password') as string;
 
-    console.log(username, ' : ', password);
-
-
     db.collection('users').insertOne({
         username: username,
         password: await bcrypt.hash(password, 10),
