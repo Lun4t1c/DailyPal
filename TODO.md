@@ -5,7 +5,6 @@
 - [X] Check why login result feedback is not showing up  
 - [ ] Check Prisma and potentially rewrite models  
 - [ ] Users emails
-- [ ] Reloading in browser causes 500 internal server error
 - [ ] Add Heroku ip addresses pool to Mongodb atlas
 
 ### Frontend
@@ -57,6 +56,10 @@
 - [ ] Write proper README
 - [X] Prepare app for multi-user possibilities
 - [ ] IMPORTANT: User register validation (https://youtu.be/E3VG-dLCRUk?t=832)
+
+### Bugs
+- [ ] Switching todo isDone causes Modal error  
+- [ ] Reloading in browser causes 500 internal server error  
 
 ### In Progress
 
