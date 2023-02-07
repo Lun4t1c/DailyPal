@@ -58,6 +58,7 @@
 - [X] Prepare app for multi-user possibilities
 - [ ] IMPORTANT: User register validation (https://youtu.be/E3VG-dLCRUk?t=832)
 - [ ] It is possible to register two user with the same login, fix that
+- [ ] Unexpected typing token in 'filter()' in html body in .svelte files
 
 ### In Progress
 
