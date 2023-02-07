@@ -33,7 +33,7 @@
     - [ ] Move adding transaction to FinanceSourceComponent
     - [X] Transaction description
     - [X] Format money display value
-    - [ ] Predicted money amount component
+    - [X] Predicted money amount component
 
   - [ ] Fitness  
     - [ ] Implement charts for FitnessMeasurements
