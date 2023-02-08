@@ -17,7 +17,7 @@
 - [ ] Modules  
 
   - [ ] Todo module  
-    - [ ] Todo CRUD  
+    - [X] Todo CRUD  
     - [ ] Delete completed todos after X time (specified by user)  
     - [ ] Nested todos  
 
@@ -26,13 +26,13 @@
   - [X] Streaks module
 
   - [ ] Finances  
-    - [ ] FinanceSources CRUD  
+    - [X] FinanceSources CRUD  
     - [ ] Ask user for confirmation when deleting  
     - [ ] Transactions CRUD  
-    - [ ] Move adding transaction to FinanceSourceComponent
+    - [X] Move adding transaction to FinanceSourceComponent
     - [X] Transaction description
     - [X] Format money display value
-    - [ ] Predicted money amount component
+    - [X] Predicted money amount component
 
   - [ ] Fitness  
     - [ ] Implement charts for FitnessMeasurements
@@ -41,9 +41,9 @@
   - [ ]  Calendar module  
 
 - [ ] Components  
-  - [ ] Todo component  
+  - [X] Todo component  
   - [X] Streak component  
-  - [ ] Finance component  
+  - [X] Finance component  
   - [X] Fitness component  
 
 ### Styling
@@ -56,6 +56,8 @@
 - [ ] Write proper README
 - [X] Prepare app for multi-user possibilities
 - [ ] IMPORTANT: User register validation (https://youtu.be/E3VG-dLCRUk?t=832)
+- [ ] It is possible to register two user with the same login, fix that
+- [ ] Unexpected typing token in 'filter()' in html body in .svelte files
 
 ### Bugs
 - [ ] Switching todo isDone causes Modal error  

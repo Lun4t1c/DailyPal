@@ -17,11 +17,11 @@
 
 
 <body>
-    <button on:click={() => getModal('main').open()}>Add Measurement</button>
+    <button on:click={() => getModal('AddFitnessMeasurementModal').open()}>Add Measurement</button>
 
     <FitnessSummaryComponent fitnessMeasurements={fitnessMeasurements}></FitnessSummaryComponent>
 
-    <Modal id="main">
+    <Modal id="AddFitnessMeasurementModal">
         <form
             method="POST"
             use:enhance>
