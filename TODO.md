@@ -39,6 +39,7 @@
     - [ ] Meals  
 
   - [ ]  Calendar module  
+  - [ ]  Feature suggestions module    
 
 - [ ] Components  
   - [X] Todo component  
