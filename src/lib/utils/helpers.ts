@@ -1,5 +1,7 @@
 /** Returns date as 'yyyy-mm-dd' string, beacues TypeScript is too stupid to do it itself */
 export function formatDate(date: Date): string {
+    date = new Date(date);
+
     let month: string = '' + (date.getMonth() + 1);
     let day: string = '' + date.getDate();
     let year: string = date.getFullYear().toString();

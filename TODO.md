@@ -27,10 +27,10 @@
   - [X] Streaks module
 
   - [ ] Finances  
-    - [ ] FinanceSources CRUD  
+    - [X] FinanceSources CRUD  
     - [ ] Ask user for confirmation when deleting  
     - [ ] Transactions CRUD  
-    - [ ] Move adding transaction to FinanceSourceComponent
+    - [X] Move adding transaction to FinanceSourceComponent
     - [X] Transaction description
     - [X] Format money display value
     - [X] Predicted money amount component
@@ -42,9 +42,9 @@
   - [ ]  Calendar module  
 
 - [ ] Components  
-  - [ ] Todo component  
+  - [X] Todo component  
   - [X] Streak component  
-  - [ ] Finance component  
+  - [X] Finance component  
   - [X] Fitness component  
 
 ### Styling
