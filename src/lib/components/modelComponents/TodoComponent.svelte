@@ -15,7 +15,7 @@
             method="POST"
             action="?/switchTodoIsDone"
             use:enhance>
-            <input type="hidden" name="_id" hidden value="{todo._id}"/>
+            <input type="hidden" name="_id" value="{todo._id}"/>
             <button class="btn" type="submit">Done</button>
         </form>
 
@@ -25,7 +25,7 @@
             method="POST"
             action="?/deleteTodo"
             use:enhance>
-            <input type="hidden" name="_id" hidden value="{todo._id}"/>
+            <input type="hidden" name="_id" value="{todo._id}"/>
             <button class="btn" type="submit">Delete</button>
         </form>
     </div>

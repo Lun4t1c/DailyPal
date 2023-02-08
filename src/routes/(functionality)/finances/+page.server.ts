@@ -19,9 +19,14 @@ export const load: PageServerLoad = async function name({locals}) {
         .find({_idUser: new ObjectId(locals.user._id)})
         .toArray();
 
+    const plannedExpenses = await plannedExpensesCollection
+        .find({_idUser: new ObjectId(locals.user._id)})
+        .toArray();
+
     return {
         financeSources: JSON.parse(JSON.stringify(financeSources)),
-        transactions: JSON.parse(JSON.stringify(transactions))
+        transactions: JSON.parse(JSON.stringify(transactions)),
+        plannedExpenses: JSON.parse(JSON.stringify(plannedExpenses))
     }
 }
 
@@ -69,6 +74,31 @@ export const actions: Actions = {
         }
     },
 
+    deleteFinanceSource: async ({request}) => {
+        const data = await request.formData();
+
+        try{
+            financeSourcesCollection.deleteOne({
+                _id: new ObjectId(data.get('_id') as string)
+            })
+
+            return {
+                status: 200,
+                body: {
+                    status: 'Success'
+                }
+            }
+        }
+        catch (error) {
+            return {
+                status: 500,
+                body: {
+                    status: 'Error'
+                }
+            }
+        }
+    },
+
     addPlannedExpense: async ({request, locals}) => {
         try {
             const data = await request.formData();
@@ -102,13 +132,10 @@ export const actions: Actions = {
         }
     },
 
-    delete: async ({request}) => {
-        const data = await request.formData();
-
-        try{
-            financeSourcesCollection.deleteOne({
-                _id: new ObjectId(data.get('_id') as string)
-            })
+    deletePlannedExpense: async ({request, locals}) => {
+        try {
+            const data = await request.formData();
+            plannedExpensesCollection.deleteOne({_id: new ObjectId(data.get('_id') as string)});
 
             return {
                 status: 200,
@@ -118,6 +145,49 @@ export const actions: Actions = {
             }
         }
         catch (error) {
+            console.log(error);
+            return {
+                status: 500,
+                body: {
+                    status: 'Error'
+                }
+            }
+        }
+    },
+
+    updatePlannedExpense: async ({request, locals}) => {
+        try {
+            const data = await request.formData();
+            const descriptionTemp: string = data.get('description') as string;
+
+            const plannedExpense: PlannedExpenseModel = {
+                _id: new ObjectId(data.get('_id') as string),
+                _idUser: new ObjectId(locals.user._id),
+                _idFinanceSource: data.get('_idFinanceSource') === 'general' ? 'general' : new ObjectId(data.get('_idFinanceSource') as string),
+                valueInPennies: Math.floor(parseFloat(data.get('valueInPennies') as string) * 100),
+                description: descriptionTemp !== '' ? descriptionTemp : null,
+                isTakenIntoAccount: stringToBoolean(data.get('isTakenIntoAccount') as string)
+            };
+
+            plannedExpensesCollection.updateOne(
+                { _id: new ObjectId(plannedExpense._id) },
+                { $set: { 
+                    _idFinanceSource: plannedExpense._idFinanceSource,
+                    valueInPennies: plannedExpense.valueInPennies,
+                    description: plannedExpense.description,
+                    isTakenIntoAccount: plannedExpense.isTakenIntoAccount
+                 } }
+            );
+
+            return {
+                status: 200,
+                body: {
+                    status: 'Success'
+                }
+            }
+        }
+        catch (error) {
+            console.log(error);
             return {
                 status: 500,
                 body: {

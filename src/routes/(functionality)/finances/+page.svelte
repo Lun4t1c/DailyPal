@@ -4,15 +4,15 @@
 	import FinancesPredictionComponent from "$lib/components/FinancesPredictionComponent.svelte";
 	import Modal, { getModal } from "$lib/components/Modal.svelte";
 	import FinanceSourceComponent from "$lib/components/modelComponents/FinanceSourceComponent.svelte";
-	import type { FinanceSourceModel } from "$lib/models/financeSourceModel";
+	import PlannedExpenseComponent from "$lib/components/modelComponents/PlannedExpenseComponent.svelte";
 	import { getTodayDateString } from "$lib/utils/helpers";
 	import type { ObjectId } from "mongodb";
     import type { PageData } from "./$types";
 
     export let data: PageData;
-    $: ({ financeSources, transactions } = data)
+    $: ({ financeSources, transactions, plannedExpenses } = data)
 
-    let _idFinanceSource: ObjectId;
+    let _idFinanceSource: ObjectId | 'general';
     let isMonthly: boolean = false;
 
     function goToFinanceById(id: ObjectId): void {
@@ -56,8 +56,18 @@
         </div>
 
         <div>
-            <div>Planned expenses</div>
+            Planned expenses
             <button on:click={() => getModal('PlannedExpenseModal').open()}>Plan new expense</button>
+
+            <div class="bg-green-500">
+                {#each plannedExpenses as plannedExpense}
+                    <PlannedExpenseComponent 
+                        plannedExpense={plannedExpense}
+                        financeSources={financeSources}>
+                    </PlannedExpenseComponent>
+                {/each}
+            </div>
+
         </div>
     </div>
 
