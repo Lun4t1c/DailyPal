@@ -33,6 +33,7 @@
     - [X] Transaction description
     - [X] Format money display value
     - [X] Predicted money amount component
+    - [ ] PlannedExpense: display percentage of total amount
 
   - [ ] Fitness  
     - [ ] Implement charts for FitnessMeasurements
