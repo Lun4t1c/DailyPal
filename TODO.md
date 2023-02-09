@@ -33,6 +33,7 @@
     - [X] Transaction description
     - [X] Format money display value
     - [X] Predicted money amount component
+    - [ ] Monthly spendings component  
 
   - [ ] Fitness  
     - [ ] Implement charts for FitnessMeasurements
