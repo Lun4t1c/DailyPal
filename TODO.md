@@ -38,6 +38,7 @@
   - [ ] Fitness  
     - [ ] Implement charts for FitnessMeasurements
     - [ ] Meals  
+    - [ ] Up/Down arrow icons in FitnessMeasurementComponent showing if measurement has improved/worsen 
 
   - [ ]  Calendar module  
   - [ ]  Feature suggestions module    
