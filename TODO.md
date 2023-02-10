@@ -19,7 +19,8 @@
   - [ ] Todo module  
     - [X] Todo CRUD  
     - [ ] Delete completed todos after X time (specified by user)  
-    - [ ] Nested todos  
+    - [ ] Nested todos 
+    - [ ] Cyclical todos  
 
   - [ ] Time spent module  
 
@@ -41,9 +42,10 @@
     - [ ] Up/Down arrow icons in FitnessMeasurementComponent showing if measurement has improved/worsen 
 
   - [ ]  Calendar module  
-  - [ ]  Feature suggestions module    
+  
+  - [X]  Feature suggestions module    
 
-- [ ] Components  
+- [X] Components  
   - [X] Todo component  
   - [X] Streak component  
   - [X] Finance component  
