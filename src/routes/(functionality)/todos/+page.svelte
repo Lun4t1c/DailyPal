@@ -13,7 +13,7 @@
 
 
 <body>
-    <button on:click="{() => getModal('main').open()}" class="border-2 w-full mb-5">
+    <button on:click="{() => getModal('AddTodoModal').open()}" class="border-2 w-full mb-5">
         New todo
     </button>
     
@@ -31,7 +31,7 @@
     </div>
     
 
-	<Modal id="main">
+	<Modal id="AddTodoModal">
 		<form
             method="POST"
             action="?/addTodo"

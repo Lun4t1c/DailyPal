@@ -19,7 +19,8 @@
   - [ ] Todo module  
     - [X] Todo CRUD  
     - [ ] Delete completed todos after X time (specified by user)  
-    - [ ] Nested todos  
+    - [ ] Nested todos 
+    - [ ] Cyclical todos  
 
   - [ ] Time spent module  
 
@@ -34,15 +35,18 @@
     - [X] Format money display value
     - [X] Predicted money amount component
     - [ ] Monthly spendings component  
+    - [X] PlannedExpense: display percentage of total amount
 
   - [ ] Fitness  
     - [ ] Implement charts for FitnessMeasurements
     - [ ] Meals  
+    - [ ] Up/Down arrow icons in FitnessMeasurementComponent showing if measurement has improved/worsen 
 
   - [ ]  Calendar module  
-  - [ ]  Feature suggestions module    
+  
+  - [X]  Feature suggestions module    
 
-- [ ] Components  
+- [X] Components  
   - [X] Todo component  
   - [X] Streak component  
   - [X] Finance component  

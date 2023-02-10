@@ -12,6 +12,7 @@
         <a class="mx-2 hover:underline" href="/fitness">Fitness</a>
         <a class="mx-2 hover:underline" href="/finances">Finances</a>
         <a class="mx-2 hover:underline" href="/about">About</a>
+        <a class="mx-2 hover:underline" href="/suggestions">Suggestions</a>
     </nav>
     
     <div class="bg-black w-fit text-white">

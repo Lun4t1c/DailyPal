@@ -1,3 +1,5 @@
+import type { FinanceSourceModel } from "$lib/models/financeSourceModel";
+
 /** Returns date as 'yyyy-mm-dd' string, beacues TypeScript is too stupid to do it itself */
 export function formatDate(date: Date): string {
     date = new Date(date);
@@ -49,4 +51,15 @@ export function getDifferenceInMonths(d1: Date, d2: Date): number {
     months -= d1.getMonth();
     months += d2.getMonth();
     return months <= 0 ? 0 : months;
+}
+
+/** Calculate total amount of money ina all FinanceSources */
+export function getTotalAmountInPennies(financeSources: FinanceSourceModel[]): number {
+    let result: number = 0;
+
+    for (let i in financeSources) {
+        result += financeSources[i].valueInPennies;
+    }
+
+    return result;
 }

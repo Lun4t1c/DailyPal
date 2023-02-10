@@ -5,7 +5,7 @@
 	import Modal, { getModal } from "$lib/components/Modal.svelte";
 	import FinanceSourceComponent from "$lib/components/modelComponents/FinanceSourceComponent.svelte";
 	import PlannedExpenseComponent from "$lib/components/modelComponents/PlannedExpenseComponent.svelte";
-	import { getTodayDateString } from "$lib/utils/helpers";
+	import { getTodayDateString, getTotalAmountInPennies } from "$lib/utils/helpers";
 	import type { ObjectId } from "mongodb";
     import type { PageData } from "./$types";
 
@@ -24,14 +24,8 @@
     }
 
     function getTotalMoneyString(): string {
-        let result: number = 0;
-
-        for (let i in financeSources) {
-            result += financeSources[i].valueInPennies;
-        }
-
-        result /= 100;
-        return result.toLocaleString("pl-PL", {style: "currency", currency: "PLN", minimumFractionDigits: 2});
+        return (getTotalAmountInPennies(financeSources) / 100)
+            .toLocaleString("pl-PL", {style: "currency", currency: "PLN", minimumFractionDigits: 2});
     }
 </script>
 
