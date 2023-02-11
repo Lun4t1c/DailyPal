@@ -2,7 +2,7 @@
 	import { enhance } from "$app/forms";
 	import type { FinanceSourceModel } from "$lib/models/financeSourceModel";
 	import type { PlannedExpenseModel } from "$lib/models/plannedExpenseModel";
-	import { getTotalAmountInPennies } from "$lib/utils/helpers";
+	import { getTotalAmountInPennies, truncString } from "$lib/utils/helpers";
 	import type { ObjectId } from "mongodb";
 	import Modal, { getModal } from "../Modal.svelte";
 
@@ -20,9 +20,14 @@
         return Math.round(((plannedExpense.valueInPennies / totalInPennies) * 100) * 100) / 100;
     }
 
+    function getValueInPenniesLocaleString(): string {
+        return (plannedExpense.valueInPennies / 100)
+            .toLocaleString("pl-PL", {style: "currency", currency: "PLN", minimumFractionDigits: 2})
+    }
+
     function getPercentageDivClass(): string {
         let percentage = getPercentage();
-        let cls: string = 'font-bold text-center '
+        let cls: string = 'flex flex-row px-5 justify-center '
 
         if (percentage < 15)
             return cls += 'bg-green-400';
@@ -39,9 +44,14 @@
 <body>
     <div class="flex flex-row items-center border-2">
         <div class="bg-white m-2 p-2">
-            {plannedExpense.description} : {(plannedExpense.valueInPennies / 100).toLocaleString("pl-PL", {style: "currency", currency: "PLN", minimumFractionDigits: 2})}
+            {truncString(plannedExpense.description, 30)}
             <div class="{getPercentageDivClass()}">
-                {calculatePercentageOfTotalString()}
+                
+                {getValueInPenniesLocaleString()} | 
+                <div class="font-bold">
+                    {calculatePercentageOfTotalString()}
+                </div>
+
             </div>
         </div>
 
