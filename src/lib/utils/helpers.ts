@@ -63,3 +63,18 @@ export function getTotalAmountInPennies(financeSources: FinanceSourceModel[]): n
 
     return result;
 }
+
+/** Truncate and return given string to length specified as parameter */
+export function truncString(str: string | null, length: number): string {
+    if (str === null) return '';
+
+    let result = '';
+
+    for  (let i = 0; i < length && i < str.length; i++)
+        result += str[i];
+
+    if (str.length > result.length)
+        result += '...';
+
+    return result;
+}

@@ -2,7 +2,7 @@
 	import { enhance } from "$app/forms";
 	import type { FinanceSourceModel } from "$lib/models/financeSourceModel";
 	import type { PlannedExpenseModel } from "$lib/models/plannedExpenseModel";
-	import { getTotalAmountInPennies } from "$lib/utils/helpers";
+	import { getTotalAmountInPennies, truncString } from "$lib/utils/helpers";
 	import type { ObjectId } from "mongodb";
 	import Modal, { getModal } from "../Modal.svelte";
 
@@ -17,12 +17,17 @@
 
     function getPercentage(): number {
         let totalInPennies: number = getTotalAmountInPennies(financeSources);
-        return Math.round((plannedExpense.valueInPennies / totalInPennies) * 100);
+        return Math.round(((plannedExpense.valueInPennies / totalInPennies) * 100) * 100) / 100;
+    }
+
+    function getValueInPenniesLocaleString(): string {
+        return (plannedExpense.valueInPennies / 100)
+            .toLocaleString("pl-PL", {style: "currency", currency: "PLN", minimumFractionDigits: 2})
     }
 
     function getPercentageDivClass(): string {
         let percentage = getPercentage();
-        let cls: string = 'font-bold text-center '
+        let cls: string = 'flex flex-row px-5 justify-evenly '
 
         if (percentage < 15)
             return cls += 'bg-green-400';
@@ -31,37 +36,51 @@
         else if (49 < percentage)
             return cls += 'bg-red-400';
 
-        return '';
+        return cls;
     }
 </script>
 
 
 <body>
     <div class="flex flex-row items-center border-2">
-        <div class="bg-white m-2 p-2">
-            {plannedExpense.description} : {(plannedExpense.valueInPennies / 100).toLocaleString("pl-PL", {style: "currency", currency: "PLN", minimumFractionDigits: 2})}
+        <div class="bg-white m-2 p-2 w-full">
+            <div class="text-center">
+                {truncString(plannedExpense.description, 30)}
+            </div>
             <div class="{getPercentageDivClass()}">
-                {calculatePercentageOfTotalString()}
+                
+                <div>{getValueInPenniesLocaleString()}</div> 
+                <div class="mx-3"></div>
+                <div class="font-bold">
+                    {calculatePercentageOfTotalString()}
+                </div>
+
             </div>
         </div>
 
-        <form
-            method="POST"
-            action="?/confirmPlannedExpense"
-            use:enhance>
-            <input type="hidden" name="_id" hidden value="{plannedExpense._id}"/>
-            <button class="btn" type="submit">Confirm</button>
-        </form>
+        <div class="flex flex-row justify-end w-full">
+            <form
+                method="POST"
+                action="?/confirmPlannedExpense"
+                use:enhance
+                class="w-fit">
+                <input type="hidden" name="_id" hidden value="{plannedExpense._id}"/>
+                <button class="btn" type="submit">Confirm</button>
+            </form>
 
-        <button class="btn" on:click={() => getModal('UpdatePlannedExpenseModal').open()}>Edit</button>
+            <button class="btn w-fit" on:click={() => getModal('UpdatePlannedExpenseModal').open()}>
+                Edit
+            </button>
 
-        <form
-            method="POST"
-            action="?/deletePlannedExpense"
-            use:enhance>
-            <input type="hidden" name="_id" hidden value="{plannedExpense._id}"/>
-            <button class="btn" type="submit">Delete</button>
-        </form>
+            <form
+                method="POST"
+                action="?/deletePlannedExpense"
+                use:enhance
+                class="w-fit">
+                <input type="hidden" name="_id" hidden value="{plannedExpense._id}"/>
+                <button class="btn" type="submit">Delete</button>
+            </form>
+        </div>
     </div>
 
     
