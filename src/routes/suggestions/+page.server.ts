@@ -1,5 +1,6 @@
 import { suggestionsCollection } from "$db/SuggestionsCollection";
 import type { SuggestionModel } from "$lib/models/suggestionModel";
+import { SuggestionStatus } from "$lib/utils/enums";
 import { redirect, type Actions } from "@sveltejs/kit";
 import { ObjectId } from "mongodb";
 import type { PageServerLoad } from "./$types";
@@ -40,7 +41,9 @@ export const actions: Actions = {
                 _idUser: new ObjectId(locals.user._id),
                 description: data.get('description') as string,
                 date: new Date(),
-                usersWhoLikedIds: []
+                usersWhoLikedIds: [],
+                status: SuggestionStatus[SuggestionStatus.NOT_TOUCHED],
+                explanation: null
             };
 
             suggestionsCollection.insertOne(suggestion);
