@@ -27,7 +27,7 @@
 
     function getPercentageDivClass(): string {
         let percentage = getPercentage();
-        let cls: string = 'flex flex-row px-5 justify-center '
+        let cls: string = 'flex flex-row px-5 justify-evenly '
 
         if (percentage < 15)
             return cls += 'bg-green-400';
@@ -43,11 +43,14 @@
 
 <body>
     <div class="flex flex-row items-center border-2">
-        <div class="bg-white m-2 p-2">
-            {truncString(plannedExpense.description, 30)}
+        <div class="bg-white m-2 p-2 w-full">
+            <div class="text-center">
+                {truncString(plannedExpense.description, 30)}
+            </div>
             <div class="{getPercentageDivClass()}">
                 
-                {getValueInPenniesLocaleString()} | 
+                <div>{getValueInPenniesLocaleString()}</div> 
+                <div class="mx-3"></div>
                 <div class="font-bold">
                     {calculatePercentageOfTotalString()}
                 </div>
@@ -55,23 +58,29 @@
             </div>
         </div>
 
-        <form
-            method="POST"
-            action="?/confirmPlannedExpense"
-            use:enhance>
-            <input type="hidden" name="_id" hidden value="{plannedExpense._id}"/>
-            <button class="btn" type="submit">Confirm</button>
-        </form>
+        <div class="flex flex-row justify-end w-full">
+            <form
+                method="POST"
+                action="?/confirmPlannedExpense"
+                use:enhance
+                class="w-fit">
+                <input type="hidden" name="_id" hidden value="{plannedExpense._id}"/>
+                <button class="btn" type="submit">Confirm</button>
+            </form>
 
-        <button class="btn" on:click={() => getModal('UpdatePlannedExpenseModal').open()}>Edit</button>
+            <button class="btn w-fit" on:click={() => getModal('UpdatePlannedExpenseModal').open()}>
+                Edit
+            </button>
 
-        <form
-            method="POST"
-            action="?/deletePlannedExpense"
-            use:enhance>
-            <input type="hidden" name="_id" hidden value="{plannedExpense._id}"/>
-            <button class="btn" type="submit">Delete</button>
-        </form>
+            <form
+                method="POST"
+                action="?/deletePlannedExpense"
+                use:enhance
+                class="w-fit">
+                <input type="hidden" name="_id" hidden value="{plannedExpense._id}"/>
+                <button class="btn" type="submit">Delete</button>
+            </form>
+        </div>
     </div>
 
     
