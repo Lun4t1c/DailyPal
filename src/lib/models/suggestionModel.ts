@@ -4,5 +4,9 @@ export interface SuggestionModel{
     _id?: ObjectId,
     _idUser: ObjectId,
     description: string,
-    usersWhoLikedIds: ObjectId[]
+    date: Date,
+    usersWhoLikedIds: ObjectId[],
+
+    isOwner?: boolean,
+    isLikePossible?: boolean
 }

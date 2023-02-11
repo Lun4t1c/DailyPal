@@ -6,6 +6,7 @@
 - [ ] Check Prisma and potentially rewrite models  
 - [ ] Users emails
 - [ ] Add Heroku ip addresses pool to Mongodb atlas
+- [ ] Move checking if user is logged in from +page.server.ts's to hooks.server.ts
 
 ### Frontend
 - [ ] Refactor Modal component
@@ -36,6 +37,7 @@
     - [X] Predicted money amount component
     - [ ] Monthly spendings component  
     - [X] PlannedExpense: display percentage of total amount
+    - [ ] Sorting PlannedExpenses
 
   - [ ] Fitness  
     - [ ] Implement charts for FitnessMeasurements

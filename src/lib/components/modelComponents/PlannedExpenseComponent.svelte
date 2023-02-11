@@ -17,7 +17,7 @@
 
     function getPercentage(): number {
         let totalInPennies: number = getTotalAmountInPennies(financeSources);
-        return Math.round((plannedExpense.valueInPennies / totalInPennies) * 100);
+        return Math.round(((plannedExpense.valueInPennies / totalInPennies) * 100) * 100) / 100;
     }
 
     function getPercentageDivClass(): string {
@@ -31,7 +31,7 @@
         else if (49 < percentage)
             return cls += 'bg-red-400';
 
-        return '';
+        return cls;
     }
 </script>
 
