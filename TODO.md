@@ -70,6 +70,7 @@
 ### Bugs
 - [ ] Switching todo isDone causes Modal error  
 - [ ] Reloading in browser causes 500 internal server error  
+- [ ] Footer covers content  
 
 ### In Progress
 
