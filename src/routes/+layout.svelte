@@ -15,4 +15,4 @@
     </div>
 </div>
 
-<Footer />
+<!-- <Footer /> -->

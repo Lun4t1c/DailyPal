@@ -32,7 +32,7 @@
 
 
 <body>
-    <div class="overflow-x-auto flex flex-row justify-end">
+    <div class="overflow-x-auto flex flex-row w-full">
         {#each transactions.filter(t => !t.isMonthly) as transaction}
             <TransactionComponent transaction={transaction}></TransactionComponent>
         {/each}
