@@ -4,7 +4,7 @@
     import { page } from "$app/stores";
 </script>
 
-<div class="flex">
+<div class="flex fixed top-0 w-full">
     <nav class="px-4 py-3 bg-purple-900 text-white w-full">
         <a class="mx-2 hover:underline" href="/">Home</a>
         <a class="mx-2 hover:underline" href="/todos">Todos</a>

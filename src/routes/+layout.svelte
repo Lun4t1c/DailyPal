@@ -9,7 +9,7 @@
 
 <Nav />
 
-<div class="flex h-96">
+<div class="flex h-96 mt-16">
     <div class="m-auto">
         <slot />
     </div>
