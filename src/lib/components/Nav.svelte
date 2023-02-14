@@ -1,7 +1,6 @@
 <script lang="ts">
-	import { applyAction, enhance } from "$app/forms";
-	import { invalidateAll } from "$app/navigation";
-    import { page } from "$app/stores";
+	
+	import UserProfileComponent from "./UserProfileComponent.svelte";
 </script>
 
 <div class="flex fixed top-0 w-full">
@@ -15,21 +14,5 @@
         <a class="mx-2 hover:underline" href="/suggestions">Suggestions</a>
     </nav>
     
-    <div class="bg-black w-fit text-white">
-        {#if !$page.data.user}
-            <a href="/login">Login</a>
-            <a href="/register">Register</a>
-        {/if}
-    
-        {#if $page.data.user}
-            <form method="POST" action="/logout" use:enhance={() => {
-                return async ({result}) => {
-                    invalidateAll();
-                    applyAction(result);
-                }
-            }}>
-                <button class="" type="submit">Log out</button>
-            </form>
-        {/if}
-    </div>
+    <UserProfileComponent />
 </div>
