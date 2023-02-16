@@ -19,6 +19,7 @@ const register: Action = async ({request}) => {
     const data = await request.formData();
     const username: string = data.get('username') as string;
     const password: string = data.get('password') as string;
+    const passwordConfirm: string = data.get('passwordConfirm') as string;
 
     const userTemp = await db.collection('users').findOne({ username: username })
     if (userTemp != null) {
@@ -27,6 +28,12 @@ const register: Action = async ({request}) => {
             body: { user: true, }
         };
     }
+
+    if (password != passwordConfirm)
+        return {
+            status: 400,
+            body: { passwordConfirm: true, }
+        };
 
     db.collection('users').insertOne({
         username: username,
