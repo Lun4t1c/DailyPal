@@ -5,6 +5,7 @@
 	import Modal, { getModal } from "$lib/components/Modal.svelte";
 	import FinanceSourceComponent from "$lib/components/modelComponents/FinanceSourceComponent.svelte";
 	import PlannedExpenseComponent from "$lib/components/modelComponents/PlannedExpenseComponent.svelte";
+	import TransactionComponent from "$lib/components/modelComponents/TransactionComponent.svelte";
 	import { getTodayDateString, getTotalAmountInPennies } from "$lib/utils/helpers";
 	import type { ObjectId } from "mongodb";
     import type { PageData } from "./$types";
@@ -31,7 +32,15 @@
 
 
 <body>
-    <div class="flex flex-row">
+    <div class="overflow-x-auto flex flex-row w-full">
+        {#each transactions.filter(t => !t.isMonthly) as transaction}
+            <TransactionComponent transaction={transaction}></TransactionComponent>
+        {/each}
+    </div>
+
+    <div class="h-0.5 w-screen bg-black mb-4"></div>
+
+    <div class="flex flex-row justify-evenly">
         <div class="mr-5">
             <div>Finances</div>
 
@@ -47,13 +56,15 @@
             <div>
                 Total: {getTotalMoneyString()}
             </div>
+            
+            <button on:click={() => getModal('PredictModal').open()}>Predict</button>
         </div>
 
         <div>
             Planned expenses
             <button on:click={() => getModal('PlannedExpenseModal').open()}>Plan new expense</button>
 
-            <div class="bg-green-500">
+            <div class="overflow-y-scroll max-h-full bg-green-500">
                 {#each plannedExpenses as plannedExpense}
                     <PlannedExpenseComponent 
                         plannedExpense={plannedExpense}
@@ -64,8 +75,6 @@
 
         </div>
     </div>
-
-    <button on:click={() => getModal('PredictModal').open()}>Predict</button>
 
     <Modal id="AddTransactionModal">
         <form method="POST" action="?/addTransaction" use:enhance>

@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { enhance } from "$app/forms";
-	import type { ActionData } from "../$types";
+	import type { ActionData } from "./$types";
 
     export let form: ActionData;
 </script>
@@ -20,8 +20,16 @@
             <input id="password" name="password" type="password" required class="border-2">
         </div>
 
-        {#if form?.user}
+        <div>
+            <label for="passwordConfirm">Confirm password</label>
+            <input id="passwordConfirm" name="passwordConfirm" type="password" required class="border-2">
+        </div>
+
+        {#if form?.body.user}
             <p class="error">Username already taken.</p>
+        {/if}
+        {#if form?.body.passwordConfirm}
+            <p class="error">Passwords are not identical.</p>
         {/if}
 
         <button class="btn" type="submit">Register</button>

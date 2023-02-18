@@ -64,6 +64,11 @@ export function getTotalAmountInPennies(financeSources: FinanceSourceModel[]): n
     return result;
 }
 
+/** Returns integer number in pennies as locale currency string */
+export function formatPenniesToLocaleString(amount: number): string {
+    return (amount / 100).toLocaleString("pl-PL", {style: "currency", currency: "PLN", minimumFractionDigits: 2});
+}
+
 /** Truncate and return given string to length specified as parameter */
 export function truncString(str: string | null, length: number): string {
     if (str === null) return '';
