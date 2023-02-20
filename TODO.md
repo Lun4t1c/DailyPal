@@ -38,6 +38,7 @@
     - [ ] Monthly spendings component  
     - [X] PlannedExpense: display percentage of total amount
     - [ ] Sorting PlannedExpenses
+    - [ ] Monthly expenses  
 
   - [ ] Fitness  
     - [ ] Implement charts for FitnessMeasurements
