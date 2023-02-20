@@ -36,9 +36,9 @@
     - [X] Format money display value
     - [X] Predicted money amount component
     - [ ] Monthly spendings component  
-    - [X] PlannedExpense: display percentage of total amount
-    - [ ] Sorting PlannedExpenses
-    - [ ] Monthly expenses  
+    - [X] PlannedExpense: display percentage of total amount  
+    - [ ] Sorting PlannedExpenses  
+    - [ ] Monthly summaries  
 
   - [ ] Fitness  
     - [ ] Implement charts for FitnessMeasurements
@@ -64,9 +64,13 @@
 
 - [ ] Write proper README
 - [X] Prepare app for multi-user possibilities
-- [ ] IMPORTANT: User register validation (https://youtu.be/E3VG-dLCRUk?t=832)
-- [ ] It is possible to register two user with the same login, fix that
+- [X] It is possible to register two user with the same login, fix that
 - [ ] Unexpected typing token in 'filter()' in html body in .svelte files
+
+### Important
+
+- [ ] User register validation (https://youtu.be/E3VG-dLCRUk?t=832)  
+- [ ] Limit login attempts  
 
 ### Bugs
 - [ ] Switching todo isDone causes Modal error  
