@@ -25,7 +25,8 @@
 
   - [ ] Time spent module  
 
-  - [X] Streaks module
+  - [ ] Streaks module
+    - [ ] If days since is 0 then display hours
 
   - [ ] Finances  
     - [X] FinanceSources CRUD  
@@ -41,7 +42,7 @@
     - [ ] Monthly summaries  
 
   - [ ] Fitness  
-    - [ ] Implement charts for FitnessMeasurements
+    - [ ] Implement charts for FitnessMeasurements (https://www.youtube.com/watch?v=HzmaqcsDiP0)  
     - [ ] Meals  
     - [ ] Up/Down arrow icons in FitnessMeasurementComponent showing if measurement has improved/worsen 
 
