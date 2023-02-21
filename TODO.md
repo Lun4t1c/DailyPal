@@ -25,7 +25,8 @@
 
   - [ ] Time spent module  
 
-  - [X] Streaks module
+  - [ ] Streaks module
+    - [ ] If days since is 0 then display hours
 
   - [ ] Finances  
     - [X] FinanceSources CRUD  
@@ -36,11 +37,12 @@
     - [X] Format money display value
     - [X] Predicted money amount component
     - [ ] Monthly spendings component  
-    - [X] PlannedExpense: display percentage of total amount
-    - [ ] Sorting PlannedExpenses
+    - [X] PlannedExpense: display percentage of total amount  
+    - [ ] Sorting PlannedExpenses  
+    - [ ] Monthly summaries  
 
   - [ ] Fitness  
-    - [ ] Implement charts for FitnessMeasurements
+    - [ ] Implement charts for FitnessMeasurements (https://www.youtube.com/watch?v=HzmaqcsDiP0)  
     - [ ] Meals  
     - [ ] Up/Down arrow icons in FitnessMeasurementComponent showing if measurement has improved/worsen 
 
@@ -63,9 +65,13 @@
 
 - [ ] Write proper README
 - [X] Prepare app for multi-user possibilities
-- [ ] IMPORTANT: User register validation (https://youtu.be/E3VG-dLCRUk?t=832)
-- [ ] It is possible to register two user with the same login, fix that
+- [X] It is possible to register two user with the same login, fix that
 - [ ] Unexpected typing token in 'filter()' in html body in .svelte files
+
+### Important
+
+- [ ] User register validation (https://youtu.be/E3VG-dLCRUk?t=832)  
+- [ ] Limit login attempts  
 
 ### Bugs
 - [ ] Switching todo isDone causes Modal error  
