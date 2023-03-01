@@ -32,6 +32,7 @@
 
     function goToTransactionsList(): void {
         goto('/finances/transactions-list');
+    }
 
     function getTotalPercentageString(): string {
         let amountInPennies = getTotalAmountInPennies(financeSources);
