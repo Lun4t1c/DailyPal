@@ -28,6 +28,10 @@
         return (getTotalAmountInPennies(financeSources) / 100)
             .toLocaleString("pl-PL", {style: "currency", currency: "PLN", minimumFractionDigits: 2});
     }
+
+    function goToTransactionsList(): void {
+        goto('/finances/transactions-list');
+    }
 </script>
 
 
@@ -37,6 +41,11 @@
             <TransactionComponent transaction={transaction}></TransactionComponent>
         {/each}
     </div>
+
+    <button on:click={() => goToTransactionsList()}
+        class="w-screen max-h-8 mb-2 mx-2 p-0">
+        All transactions
+    </button>
 
     <div class="h-0.5 w-screen bg-black mb-4"></div>
 
