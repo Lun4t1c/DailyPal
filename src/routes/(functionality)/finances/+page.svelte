@@ -30,6 +30,9 @@
             .toLocaleString("pl-PL", {style: "currency", currency: "PLN", minimumFractionDigits: 2});
     }
 
+    function goToTransactionsList(): void {
+        goto('/finances/transactions-list');
+
     function getTotalPercentageString(): string {
         let amountInPennies = getTotalAmountInPennies(financeSources);
         let plannedAmountIntPennies = 0;
@@ -38,7 +41,7 @@
             plannedAmountIntPennies += plannedExpenses[i].valueInPennies
         }
 
-        return (Math.round(((plannedAmountIntPennies / amountInPennies) * 100) * 100) / 100).toString() + '%'
+        return (Math.round(((plannedAmountIntPennies / amountInPennies) * 100) * 100) / 100).toString() + '%';
     }
 </script>
 
@@ -49,6 +52,11 @@
             <TransactionComponent transaction={transaction}></TransactionComponent>
         {/each}
     </div>
+
+    <button on:click={() => goToTransactionsList()}
+        class="w-screen max-h-8 mb-2 mx-2 p-0">
+        All transactions
+    </button>
 
     <div class="h-0.5 w-screen bg-black mb-4"></div>
 
