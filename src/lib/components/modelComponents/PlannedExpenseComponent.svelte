@@ -22,12 +22,12 @@
 
     function getValueInPenniesLocaleString(): string {
         return (plannedExpense.valueInPennies / 100)
-            .toLocaleString("pl-PL", {style: "currency", currency: "PLN", minimumFractionDigits: 2})
+            .toLocaleString("pl-PL", {style: "currency", currency: "PLN", minimumFractionDigits: 2});
     }
 
     function getPercentageDivClass(): string {
         let percentage = getPercentage();
-        let cls: string = 'flex flex-row px-5 justify-evenly '
+        let cls: string = 'flex flex-row px-5 justify-evenly ';
 
         if (percentage < 15)
             return cls += 'bg-green-400';
