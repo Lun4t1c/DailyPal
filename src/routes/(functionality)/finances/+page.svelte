@@ -50,7 +50,7 @@
 <body>
     <div class="overflow-x-auto flex flex-row w-screen">
         {#each transactions.filter(t => !t.isMonthly) as transaction}
-            <TransactionComponent transaction={transaction}></TransactionComponent>
+            <TransactionComponent transaction={transaction} financeSources={financeSources}></TransactionComponent>
         {/each}
     </div>
 

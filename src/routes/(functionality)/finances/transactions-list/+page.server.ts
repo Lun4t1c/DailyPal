@@ -34,10 +34,10 @@ export const actions: Actions = {
                 _id: new ObjectId(data.get('_id') as string),
                 _idUser: new ObjectId(locals.user._id),
                 _idFinanceSource: new ObjectId(data.get('_idFinanceSource') as string),
-                amountInPennies: Math.floor(parseFloat(data.get('valueInPennies') as string) * 100),
+                amountInPennies: Math.floor(parseFloat(data.get('amount') as string) * 100),
                 description: descriptionTemp !== '' ? descriptionTemp : null,
-                date: 0,
-                isMonthly: false
+                date: new Date(data.get('date') as string),
+                isMonthly: stringToBoolean(data.get('isMonthly') as string)
             };
 
             transactionsCollection.updateOne(
@@ -46,6 +46,8 @@ export const actions: Actions = {
                     _idFinanceSource: transaction._idFinanceSource,
                     amountInPennies: transaction.amountInPennies,
                     description: transaction.description,
+                    date: transaction.date,
+                    isMonthly: transaction.isMonthly
                  } }
             );
 

@@ -1,6 +1,8 @@
 <script lang="ts">
+	import { enhance } from "$app/forms";
 	import type { TransactionModel } from "$lib/models/transactionModel";
 	import { formatPenniesToLocaleString } from "$lib/utils/helpers";
+	import Modal, { getModal } from "../Modal.svelte";	
 
     export let transaction: TransactionModel;
 </script>

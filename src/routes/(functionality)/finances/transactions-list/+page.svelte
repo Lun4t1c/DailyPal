@@ -4,7 +4,7 @@
     import type { PageData } from "../$types";
 
     export let data: PageData;
-    $: ({ transactions } = data)
+    $: ({ transactions, financeSources } = data)
 
     function getSortedOneTimeTransactions(): TransactionModel[] {
         return transactions
@@ -23,7 +23,7 @@
         <div class="flex flex-col">
             One-time transactions
             {#each getSortedOneTimeTransactions() as transaction}
-                <TransactionsListEntryComponent transaction={transaction}></TransactionsListEntryComponent>
+                <TransactionsListEntryComponent transaction={transaction} financeSources={financeSources}></TransactionsListEntryComponent>
             {/each}
         </div>
 
@@ -32,7 +32,7 @@
         <div class="flex flex-col">
             Monthly transactions
             {#each transactions.filter((t) => { return t.isMonthly }) as transaction}
-                <TransactionsListEntryComponent transaction={transaction}></TransactionsListEntryComponent>
+                <TransactionsListEntryComponent transaction={transaction} financeSources={financeSources}></TransactionsListEntryComponent>
             {/each}
         </div>
     </div>
