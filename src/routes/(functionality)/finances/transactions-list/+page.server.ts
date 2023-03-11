@@ -1,14 +1,23 @@
 import type { Actions, PageServerLoad } from "./$types";
+import type { Actions, PageServerLoad } from "./$types";
 import { ObjectId } from "mongodb";
+import { financeSourcesCollection } from "$db/financeSourcesCollection";
+import type { TransactionModel } from "$lib/models/transactionModel";
 import { financeSourcesCollection } from "$db/financeSourcesCollection";
 import type { TransactionModel } from "$lib/models/transactionModel";
 import { transactionsCollection } from "$db/transactionsCollection";
 import { stringToBoolean } from "$lib/utils/helpers";
+import { stringToBoolean } from "$lib/utils/helpers";
 import { redirect } from "@sveltejs/kit";
+import type { PlannedExpenseModel } from "$lib/models/plannedExpenseModel";
 import type { PlannedExpenseModel } from "$lib/models/plannedExpenseModel";
 
 export const load: PageServerLoad = async function name({locals}) {
     if (!locals.user) throw redirect(302, '/login');
+
+    const financeSources = await financeSourcesCollection
+        .find({_idUser: new ObjectId(locals.user._id)})
+        .toArray();
 
     const financeSources = await financeSourcesCollection
         .find({_idUser: new ObjectId(locals.user._id)})
@@ -19,6 +28,7 @@ export const load: PageServerLoad = async function name({locals}) {
         .toArray();
 
     return {
+        financeSources: JSON.parse(JSON.stringify(financeSources)),
         financeSources: JSON.parse(JSON.stringify(financeSources)),
         transactions: JSON.parse(JSON.stringify(transactions))
     }
