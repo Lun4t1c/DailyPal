@@ -99,6 +99,30 @@ export const actions: Actions = {
         }
     },
 
+    hardSetFinanceSourceAmount: async ({request, locals}) => {
+        const data = await request.formData();
+
+        let _idFinanceSourceString: string = data.get('_id') as string;
+        let amountInPennies: number = Math.floor(parseFloat(data.get('amount') as string) * 100);
+
+        try{
+            financeSourcesCollection.updateOne(
+                { _id: new ObjectId(_idFinanceSourceString) },
+                { $set: { 
+                    valueInPennies: amountInPennies
+                 } }
+            );
+        }
+        catch (error) {
+            return {
+                status: 500,
+                body: {
+                    status: 'Error'
+                }
+            }
+        }
+    },
+
     addPlannedExpense: async ({request, locals}) => {
         try {
             const data = await request.formData();
@@ -195,5 +219,5 @@ export const actions: Actions = {
                 }
             }
         }
-    },
+    },    
 };
