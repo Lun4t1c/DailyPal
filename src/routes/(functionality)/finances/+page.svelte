@@ -6,6 +6,7 @@
 	import FinanceSourceComponent from "$lib/components/modelComponents/FinanceSourceComponent.svelte";
 	import PlannedExpenseComponent from "$lib/components/modelComponents/PlannedExpenseComponent.svelte";
 	import TransactionComponent from "$lib/components/modelComponents/TransactionComponent.svelte";
+	import type { PlannedExpenseModel } from "$lib/models/plannedExpenseModel";
 	import { getTodayDateString, getTotalAmountInPennies } from "$lib/utils/helpers";
 	import type { ObjectId } from "mongodb";
     import type { PageData } from "./$types";
@@ -28,6 +29,21 @@
         return (getTotalAmountInPennies(financeSources) / 100)
             .toLocaleString("pl-PL", {style: "currency", currency: "PLN", minimumFractionDigits: 2});
     }
+
+    function goToTransactionsList(): void {
+        goto('/finances/transactions-list');
+    }
+
+    function getTotalPercentageString(): string {
+        let amountInPennies = getTotalAmountInPennies(financeSources);
+        let plannedAmountIntPennies = 0;
+
+        for (let i in plannedExpenses) {
+            plannedAmountIntPennies += plannedExpenses[i].valueInPennies
+        }
+
+        return (Math.round(((plannedAmountIntPennies / amountInPennies) * 100) * 100) / 100).toString() + '%';
+    }
 </script>
 
 
@@ -37,6 +53,11 @@
             <TransactionComponent transaction={transaction}></TransactionComponent>
         {/each}
     </div>
+
+    <button on:click={() => goToTransactionsList()}
+        class="w-screen max-h-8 mb-2 mx-2 p-0">
+        All transactions
+    </button>
 
     <div class="h-0.5 w-screen bg-black mb-4"></div>
 
@@ -61,7 +82,7 @@
         </div>
 
         <div>
-            Planned expenses
+            Planned expenses ({getTotalPercentageString()})
             <button on:click={() => getModal('PlannedExpenseModal').open()}>Plan new expense</button>
 
             <div class="overflow-y-scroll max-h-full bg-green-500">
